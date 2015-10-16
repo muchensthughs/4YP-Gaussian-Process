@@ -1,7 +1,7 @@
 %%%%%%%%%% Initialisation %%%%%%%%%%%%%%%
 
-params = GP_combineParams(0.3, 0.2, 0.3, 0);
-change_vars = [1, 0, 1, 0];
+params = GP_combineParams(1, 0.2, 0.3, 0);
+change_vars = [0, 0, 1, 0];
 numSamples = 2;
 
 X = [-1.5, -1, -0.5, 0, 0.5, 1.0, 1.5, 2.0]';
