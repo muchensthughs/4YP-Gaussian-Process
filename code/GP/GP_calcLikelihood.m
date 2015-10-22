@@ -40,7 +40,7 @@ Y = Y - mean(Y);
 K = zeros(numPoints); dKdl = zeros(numPoints); dKds = zeros(numPoints); dKdf = zeros(numPoints); dKdw = zeros(numPoints);
 for i = 1:numPoints,
     for j = 1:numPoints,
-        [K(i,j), dKdl(i,j), dKds(i,j), dKdf(i,j), dKdw(i,j)] = GP_covariance (X(i),X(j),l, sigma_n, sigma_f, f);
+        [K(i,j), dKdl(i,j), dKds(i,j), dKdf(i,j), dKdw(i,j)] = GP_covariance (X(i,:),X(j,:),l, sigma_n, sigma_f, f);
     end
 end
 
