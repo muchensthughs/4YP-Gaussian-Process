@@ -1,0 +1,120 @@
+\documentclass[11pt]{report}
+\title{The Future of Work}
+\author{Mu Chen}
+
+\usepackage[margin=0.787in]{geometry}
+
+%\usepackage{fontspec}
+%\setmainfont{Arial}
+
+
+\usepackage{setspace}
+
+
+\usepackage{cite}
+\usepackage{adjustbox}
+\usepackage{caption}
+\usepackage{graphicx}
+\usepackage{array}
+\usepackage{subcaption}
+\usepackage{amsmath}
+\usepackage{setspace}
+\usepackage{gensymb}
+\usepackage{tablefootnote}
+
+\usepackage[T1]{fontenc}
+\usepackage{helvet}
+\renewcommand{\familydefault}{\sfdefault}
+
+\renewcommand{\thefootnote}{\roman{footnote}}
+
+\newcounter{FootnoteCounter} % Can we use the counter functionality for footnotes as it allows footnotes to be inserted into tables, figs etc.
+\stepcounter{FootnoteCounter} % Add one to counter (initialised at zero)
+%\footnotemark[\arabic{FootnoteCounter}] // Place the footnote number in the text
+%\footnotetext[\arabic{FootnoteCounter}]{Example footnote} // Set the text to be displayed with this instance of footnote
+%\stepcounter{FootnoteCounter} // Increment the counter for the next useage.
+
+\usepackage{fancyhdr}
+ 
+\usepackage{pdfpages}
+ 
+ 
+\pagestyle{fancy}
+
+\fancyfoot[C]{\sffamily\fontsize{9pt}{9pt}\selectfont\thepage}
+
+\setlength{\textfloatsep}{\baselineskip + 0.2\baselineskip - 0.1\baselineskip}
+
+
+\doublespace
+
+\begin{document}
+\pagenumbering{roman}
+
+\lhead{Introduction}
+\section{Introduction}
+The question of how computers can change future careers have been a popular issue recently. With the fast development of automation technologies, more jobs have become purely automated. Many people argued that the increase in unemployment rate is partly because this. Would it be true that more people will become jobless? Or is it just a short term phenomenon that does not represent future trends? This report represent how this problem is tackled in the respect of machine learning techniques. In particular, the property of jobs are analysed through Gaussian Process and the possibility of automation of the job can be predicted. 
+
+\newpage
+\lhead{Gaussian Process Regression}
+\section{Gaussian Process Regression}
+
+\subsection{Covariance Function}
+The covariance function describes how observations are related to each other.
+
+\[k(x,x\prime) = \sigma_f^2exp\big[\frac{-(x-x\prime)}{2l^2}\big]\]
+
+\subsection{Hyperparameters}
+
+\newpage
+\lhead{Gaussian Process Classification}
+\section{Gaussian Process Classification}
+From the last chapter, we know that regression involves continuous observation values. However, sometimes the output data is not continuous but a series of labels, where we wish to determine the class labels according to input x. This is the problem of classification. Similar ideas are adopted, except here regression is applied on a latent variable f and then the final class label is determined by 'squashing' f into range [0,1], from which the probability of a typical label.
+
+\subsection{'Squashing' Function}
+The 'squashing' function can be any sigmoid[explanation] funciton. Two typical sigmoid functions that will be discussed are logistic function $\lambda (f)$ and cumulative Gaussian function $\phi (f)$.
+
+
+Inference is hence devided into two steps. First is computing the distribution of the prediction latent variable $f_*$ in terms of previous observations 
+
+\[p(\boldsymbol f_*|\boldsymbol X,\boldsymbol y,\boldsymbol x_*) = \int p(\boldsymbol f_*|\boldsymbol X,\boldsymbol x_*,\boldsymbol f)p(\boldsymbol f|\boldsymbol X,\boldsymbol y)\ d\boldsymbol f\]
+
+where \(p(\boldsymbol f|\boldsymbol X,\boldsymbol y) = {p(\boldsymbol y|\boldsymbol f)p(\boldsymbol f|\boldsymbol X)}/{p(\boldsymbol y|\boldsymbol X)}\) is the posterior of latent variables $\boldsymbol f$, which is estimated by MAP with respect to hyperpamaters($l$ and $\sigma_f$).
+
+After obtaining the information about predictive latent variable, the probabilistic prediction and estimated by
+
+\[\bar{\pi}_* = p(y_* = +1|X,y,x_*) = \int \sigma (f_*)p(f_*|X,y,x_*) df_*\] 
+
+This is called the averaged probility. One may argue that expectation of the prediction should be simply equal to the sigmoidal mean of $f_*$. These are actually two different things because of the non-linearity of sigmoid function, the first is $E[\pi_*|X,y,x_*]$ while the later one is $\sigma (E[f_*|y])$.
+
+\subsection{The Laplace Approximation}
+
+Both of the intergrals metioned above are not analytically tractable. By doing a second order Taylor expansion of log$p(f|X,y)$ around its maximum point, a Gaussian approximation of the posterior $q(f|X,y)$ can be obtained.
+
+\subsection{Estimating the Model}
+
+
+\subsection{Probabilistic Prediction}
+
+\subsection{Mathematical Implementation}
+\space
+
+\subsubsection{Optimised latent variable $f$}
+The best latent f should be estimated for each set of hyperparameters by solving 
+
+\[\hat{f} = K(\bigtriangledown logp(y|\hat{f}))\]
+
+Commonly used convergence criteria depend on the difference between successive $\Psi (f)$, the magnitude of gradient vetor $\bigtriangledown\Psi (f)$ or the defference between successive values of $f$. Note in practice, the convergence of objective functio is assured by checking that each iteration gives an increase in $\Psi (f)$. If not, a smaller step change in $f$ should be used.
+
+
+\subsubsection{Maximised Marginal Likelihood}
+
+Gradient computation: 
+
+\subsubsection{Predictive Class Probability}
+Adding jitter -
+\subsection{Multi-class Classification}
+
+
+
+\end{document}
