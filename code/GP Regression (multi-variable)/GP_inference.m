@@ -1,4 +1,4 @@
-function [X_est, ymean_est, bounds, K, Variance] = GP_inference ( X, Y, params, X_est)
+function [X_est, ymean_est, K, Variance] = GP_inference ( X, Y, params, X_est)
 
 
 
@@ -59,11 +59,23 @@ close all;
 %X_est = X_est';
 %fill ([X_est; flipud(X_est)], [bounds(:,1); flipud(bounds(:,2))], color, 'EdgeColor', color); %draw the error region
 %[x1,x2] = meshgrid(min(min(X)):0.1:max(max(X)));
-surf(X_est(:,1),X_est(:,2),ymean_est);
-plot3(X(:,1),X(:,2),Y+mean(Y),'ro');
+contour(X_est(:,1),X_est(:,2),ymean_est,10,'ShowText','on');
+plot3(X(:,1),X(:,2),Y+mean(Y),'b+');
+title('Posterior Y Plot');
 xlabel('X1');
 ylabel('X2');
 zlabel('Y');
+
+hold on;
+figure;
+contour(X_est(:,1),X_est(:,2),Variance,10,'ShowText','on');
+hold on;
+plot(X(:,1),X(:,2),'b+');
+title('Variance Plot');
+xlabel('X1');
+ylabel('X2');
+zlabel('Var');
+
 %plot the estimation line
    % plot (X_est,ymean_est,'k')
    %plot the data points

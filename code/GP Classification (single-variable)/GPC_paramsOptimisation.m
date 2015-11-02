@@ -45,37 +45,7 @@ for i = 1:3
  end
 end
 
-%%using the optimised parameters to calculate latent f
-latent_f_opt = zeros(numPoints,1);
-l = optimised_params(1);
-sigma_f = optimised_params(2);
-f = optimised_params(3);
+%%using the optimised parameters to calculate the best latent f
 
-% covariance matrix and derivatives
-K = zeros(numPoints); dKdl = zeros(numPoints); dKdf = zeros(numPoints); dKdw = zeros(numPoints);
-for i = 1:numPoints,
-    for j = 1:numPoints,
-        [K(i,j), dKdl(i,j), dKdf(i,j), dKdw(i,j)] = GPC_covariance (X(i),X(j),l, sigma_f, f);
-    end
-end
-K = K + 1e3*eps*eye(numPoints);
-
-ti = (Y + 1)/2 ;
-error = 1;
-while error > 1e-8,
-pii = 1./(1+exp(-latent_f_opt));
-d2logpYf = -pii.*(1 - pii);
-dlogpYf = ti - pii;
-
-W = - diag(d2logpYf);
-sqrtW = sqrtm(W);
-B = eye(numPoints) + sqrtW*K*sqrtW;
-L = chol (B,'lower');
-b = W*latent_f_opt + dlogpYf;
-a = b - sqrtW*L'\(L\(sqrtW*K*b));
-
-last_f = latent_f_opt;
-latent_f_opt = K*a;
-error = norm(latent_f_opt - last_f);
-end
+[~, ~, latent_f_opt] = GPC_calcLikelihood (optimised_params,optimised_params,[0 0 0], numPoints, X, Y);
 

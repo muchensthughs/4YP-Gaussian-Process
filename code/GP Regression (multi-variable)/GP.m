@@ -18,6 +18,6 @@ X_est1 = X_est1';
 X_est2  = min(X2) + (0:(1e2-1))/1e2 * (max(X2) - min(X2));
 X_est2 = X_est2';
 X_est = [X_est1 X_est2];
-[X_est, Ymean_est, bounds, K, variance] = GP_inference(X, Y, optimised_params, X_est);
+[X_est, Ymean_est, K, variance] = GP_inference(X, Y, optimised_params, X_est);
 
 
