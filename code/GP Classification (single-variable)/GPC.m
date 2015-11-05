@@ -4,10 +4,10 @@ params = GPC_combineParams(1, 0.3, 0);
 change_vars = [1, 0, 0];
 numSamples = 5;
 
-X1 = [-1.5, -1, -0.5, 0, 0.5, 1.0, 1.5, 2.0]';
+X1 = [0.8, 1.4, -1.0, -0.5, 2.5, 0, 0.3, -1.5]';
 %X2 = [-1.5, -1, -0.5, 1, 0.5, 1.0, 1.5, 2.0]';
 %X = [X1 X2];
-Y = [-1, -1, -1, 1, 1, 1, -1, -1]';
+Y = [-1, -1, -1, -1, 1, 1, 1, 1]';
 
 numInputPoints = size(X1,1);
 [optimised_params, latent_f_opt] = GPC_paramsOptimisation(params, change_vars, numSamples,numInputPoints,X1,Y );
