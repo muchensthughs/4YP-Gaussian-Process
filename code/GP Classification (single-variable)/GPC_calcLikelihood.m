@@ -1,5 +1,5 @@
 
-function [fval, gradient, latent_f] = GPC_calcLikelihood (variables,initialParams,ind, numPoints, X, Y)
+function [fval, gradient, latent_f, L, W, K] = GPC_calcLikelihood (variables,initialParams,ind, numPoints, X, Y)
 
 
 % loading the parameters
@@ -41,58 +41,57 @@ for i = 1:numPoints,
 end
 K = K + 1e3*eps.*eye(numPoints);
 
-
-
-
 latent_f = zeros(numPoints,1);
-ti = (Y + 1)/2 ;
-pii = 1./(1+exp(-latent_f));
-d2logpYf = -pii.*(1 - pii);
-dlogpYf = ti - pii;
+ti = (Y+1)/2;
+%with correction
+yf = Y.*latent_f; s = -yf;
+   ps   = max(0,s); 
+    logpYf = -(ps+log(exp(-ps)+exp(s-ps))); 
+    logpYf = sum(logpYf);
+   s   = min(0,latent_f); 
+   p   = exp(s)./(exp(s)+exp(s-latent_f));                    % p = 1./(1+exp(-f))
+   dlogpYf = ti-p;                          % derivative of log likelihood                         % 2nd derivative of log likelihood
+   d2logpYf = -exp(2*s-latent_f)./(exp(s)+exp(s-latent_f)).^2;
+
+
+    %without correction
+
+%ti = (Y + 1)/2 ;
+%pii = 1./(1+exp(-latent_f));
+%d2logpYf = -pii.*(1 - pii);
+%dlogpYf = ti - pii;
 
 %find objective function with current settings
-logpYf = -log(1 + exp(-Y.*latent_f));
-logpYf = sum(logpYf);
+%logpYf = -log(1 + exp(-Y.*latent_f));
+%logpYf = sum(logpYf);
 
 
-%W = - diag(d2logpYf);
-W = -(d2logpYf);
-%sqrtW = sqrtm(W);
-sqrtW = sqrt(W);
-%B = eye(numPoints) + sqrtW*K*sqrtW;
-B = eye(numPoints) + sqrtW*sqrtW'.*K;
-L = chol (B,'lower');
-%b = W*latent_f + dlogpYf;
-b = W.*latent_f + dlogpYf;
-%a = b - sqrtW*L'\(L\(sqrtW*K*b));
-a = b - sqrtW.*solve_chol(L,sqrtW.*(K*b));
+
 a0 = zeros(numPoints,1);
 a_mat(:,1) = a0; 
-obj = logpYf - (1/2)*a'*latent_f ;
+obj = logpYf - (1/2)*a0'*latent_f ;
 
 obj_mat(1) =obj;
 obj_grad = dlogpYf - K'*latent_f;
  count = 2;
 %check whether the objective function has approached its stationary point
-while norm(obj_grad) > 1e-3,
+%while norm(obj_grad) > 1e-3,
+tol = 1e-6;
+change = inf - obj_mat(1);
+while change > tol,
    
     %store the value of latent_f and objective function from last iteration  
     %last_latent_f = latent_f;   
   
 
     %update latent_f 
-    %W = - diag(d2logpYf);
-W = -(d2logpYf);
-%sqrtW = sqrtm(W);
+    W = - diag(d2logpYf);
 sqrtW = sqrt(W);
-%B = eye(numPoints) + sqrtW*K*sqrtW;
-B = eye(numPoints) + sqrtW*sqrtW'.*K;
+B = eye(numPoints) + sqrtW*K*sqrtW;
 L = chol (B,'lower');
-%b = W*latent_f + dlogpYf;
-b = W.*latent_f + dlogpYf;
-%a = b - sqrtW*L'\(L\(sqrtW*K*b));
+b = W*latent_f + dlogpYf;
+a = b - sqrtW*(L'\(L\(sqrtW*(K*b))));
 
-a = b - sqrtW.*solve_chol(L,sqrtW.*(K*b)); 
 a_mat(:,count) = a;
 step(:,count) = zeros(numPoints,1);
 latent_f = K*a;
@@ -102,32 +101,33 @@ latent_f = K*a;
     end
 
     % without corrections!!!!!!!!
-    logpYf = -log(1 + exp(-Y.*latent_f));
+%    logpYf = -log(1 + exp(-Y.*latent_f));
+%    logpYf = sum(logpYf);
+%    obj = logpYf - (1/2)*a'*latent_f ;
+%    obj_mat(count) = obj;
+%    change = obj_mat(count) - obj_mat(count - 1);
+%    pii = 1./(1+exp(-latent_f));
+%    d2logpYf = -pii.*(1 - pii);
+%    dlogpYf = ti - pii;
+%    obj_grad = dlogpYf - K'*latent_f;
+    
+    %with corrections!!!!!!!!!!!
+    yf = Y.*latent_f; s = -yf;
+    ps   = max(0,s); 
+    logpYf = -(ps+log(exp(-ps)+exp(s-ps))); 
     logpYf = sum(logpYf);
+    s   = min(0,latent_f); 
+    p   = exp(s)./(exp(s)+exp(s-latent_f));                    % p = 1./(1+exp(-f))
+    dlogpYf = (Y+1)/2-p;                          % derivative of log likelihood                         % 2nd derivative of log likelihood
+    d2logpYf = -exp(2*s-latent_f)./(exp(s)+exp(s-latent_f)).^2;
     obj = logpYf - (1/2)*a'*latent_f ;
     obj_mat(count) = obj;
     change = obj_mat(count) - obj_mat(count - 1);
-    pii = 1./(1+exp(-latent_f));
-    d2logpYf = -pii.*(1 - pii);
-    dlogpYf = ti - pii;
     obj_grad = dlogpYf - K'*latent_f;
-    
-    %with corrections!!!!!!!!!!!
-    %yf = Y.*latent_f; s = -yf;
-    %ps   = max(0,s); 
-    %logpYf = -(ps+log(exp(-ps)+exp(s-ps))); 
-    %logpYf = sum(logpYf);
-    %s   = min(0,latent_f); 
-    %p   = exp(s)./(exp(s)+exp(s-f));                    % p = 1./(1+exp(-f))
-    %dlogpYf = (Y+1)/2-p;                          % derivative of log likelihood                         % 2nd derivative of log likelihood
-    %d2logpYf = -exp(2*s-latent_f)./(exp(s)+exp(s-latent_f)).^2;
-    %obj = logpYf - (1/2)*a'*latent_f ;
-    %change = obj - obj_last;
-    %obj_grad = dlogpYf - K'*latent_f;
     
     count = count +1;  
     
-    
+ 
 %%error check -- step may not be of the right scale
 if change < 0,
     %%%%debug plots%%%%%%%
@@ -159,7 +159,8 @@ if change < 0,
     logpYf = -log(1 + exp(-Y.*latent_f_test));
     logpYf = sum(logpYf);
     obj = logpYf - (1/2)*a_test'*latent_f_test ;
-    change_a = obj - 
+    change_a = obj;
+    
     %change = obj - obj_mat(count - 1);
     pii = 1./(1+exp(-latent_f_test));
     d2logpYf = -pii.*(1 - pii);
@@ -168,8 +169,7 @@ if change < 0,
     
  %   y(i+1) = obj;
     end
-     
- 
+
     
 %    end  
 %%error check plot%%%%    
@@ -210,19 +210,48 @@ if change < 0,
 end
 end
 
-%update parameters with optimised latent_f that will be used 
-%for estimation of marginal likelihood and its gradients 
-pii = 1./(1+exp(-latent_f));
-dlogpYf = ti - pii;
-d2logpYf = -pii.*(1 - pii);
-d3logpYf = pii.*(2.*pii - 1).*(1 - pii);
-
-W = - diag(d2logpYf);
-sqrtW = sqrtm(W);
+ %calculate optimised latent_f with final a    
+ W = -diag(d2logpYf);
+sqrtW = sqrt(W);
 B = eye(numPoints) + sqrtW*K*sqrtW;
 L = chol (B,'lower');
 b = W*latent_f + dlogpYf;
-a = b - sqrtW*L'\(L\(sqrtW*K*b));
+a = b - sqrtW*(L'\(L\(sqrtW*K*b)));
+
+a_mat(:,count) = a;
+step(:,count) = zeros(numPoints,1);
+latent_f = K*a;
+
+%update parameters with optimised latent_f that will be used 
+%for estimation of marginal likelihood and its gradients 
+
+%without correction!!!!!!!!
+%pii = 1./(1+exp(-latent_f));
+%dlogpYf = ti - pii;
+%d2logpYf = -pii.*(1 - pii);
+%d3logpYf = pii.*(2.*pii - 1).*(1 - pii);
+
+%W = - diag(d2logpYf);
+%sqrtW = sqrtm(W);
+%B = eye(numPoints) + sqrtW*K*sqrtW;
+%L = chol (B,'lower');
+%b = W*latent_f + dlogpYf;
+%a = b - sqrtW*L'\(L\(sqrtW*K*b));
+
+% with corrections!!!!!!!!!!!
+yf = Y.*latent_f; s = -yf;
+    ps   = max(0,s); 
+    logpYf = -(ps+log(exp(-ps)+exp(s-ps))); 
+    logpYf = sum(logpYf);
+    s   = min(0,latent_f); 
+    p   = exp(s)./(exp(s)+exp(s-latent_f));                    % p = 1./(1+exp(-f))
+    dlogpYf = (Y+1)/2-p;                          % derivative of log likelihood                         % 2nd derivative of log likelihood
+    d2logpYf = -exp(2*s-latent_f)./(exp(s)+exp(s-latent_f)).^2;
+    d3logpYf = 2*d2logpYf.*(0.5-p);
+    obj = logpYf - (1/2)*a'*latent_f ;
+    obj_mat(count) = obj;
+    change = obj_mat(count) - obj_mat(count - 1);
+    obj_grad = dlogpYf - K'*latent_f;
 
 
 % Log marginal likelihood and its gradients w.r.t. hyperparameters

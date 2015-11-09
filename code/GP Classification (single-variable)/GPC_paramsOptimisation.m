@@ -1,4 +1,4 @@
-function [optimised_params, latent_f_opt] = GPC_paramsOptimisation (initialParams, ind, numSamples, numPoints, X, Y)
+function [optimised_params, latent_f_opt, L, W, K] = GPC_paramsOptimisation (initialParams, ind, numSamples, numPoints, X, Y)
 
 
 %initial samples for optimisation
@@ -47,5 +47,5 @@ end
 
 %%using the optimised parameters to calculate the best latent f
 
-[~, ~, latent_f_opt] = GPC_calcLikelihood (optimised_params,optimised_params,[0 0 0], numPoints, X, Y);
+[~, ~, latent_f_opt, L, W, K] = GPC_calcLikelihood (optimised_params,optimised_params,[0 0 0], numPoints, X, Y);
 
