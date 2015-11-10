@@ -68,7 +68,7 @@ zlabel('Y');
 
 hold on;
 figure;
-contour(X_est(:,1),X_est(:,2),Variance,10,'ShowText','on');
+contour(X_est(:,1),X_est(:,2),Variance,5,'ShowText','on');
 hold on;
 plot(X(:,1),X(:,2),'b+');
 title('Variance Plot');
