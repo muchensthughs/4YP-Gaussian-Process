@@ -30,6 +30,7 @@ if ind(4)==1,
     var_inits = [var_inits f_samples];
 end
 
+%var_inits = exp(var_inits);
 %find the optimised set of parameters where function output of the
 %GP_calcLikelihood (log marginal likelihood) is maxmised
 params_matrix = [];
