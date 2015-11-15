@@ -43,27 +43,26 @@ yf = Y.*latent_f_opt; s = -yf;
 
 sqrtW = sqrt(W);
 %  estimation 
-    for q = 1:num_ests,
-        for p = 1:num_ests,
-            X_est1 = X_est(p,1);
-            X_est2 = X_est(q,2);
-            X_est_input = [X_est1 X_est2];
+
+  
+    for p = 1:num_ests,
+        
             for i = 1:length_X,
-                K_est(i) = GPC_covariance (X(i,:),X_est_input, l,sigma_f, w);
+                K_est(i) = GPC_covariance (X(i,:),X_est(p,:), l,sigma_f, w);
             end
     
     % Mean of prediction
-    fstar(q,p) = K_est' * dlogpYf;
+    fstar(p) = K_est' * dlogpYf;
     %variance of prediction
     v = L\(sqrtW*K_est);
-    var(q,p) = GPC_covariance (X_est_input, X_est_input,l, sigma_f, w) - v'*v;
-sigma = sqrt(var(q,p));
+    var(p) = GPC_covariance (X_est(p,:), X_est(p,:),l, sigma_f, w) - v'*v;
+sigma = sqrt(var(p));
 %syms f;
 %normf = normpdf(f, fstar(q,p)-1.96*sigma, fstar(q,p)+1.96*sigma);
-%pi_star_ave(q,p) = int(  (1/(1+exp(-f)))* (1/(sigma*sqrt(2*pi))) * exp(-(f-fstar(q,p))^2/(2*sigma^2)) , fstar(q,p)-1.96*sigma, fstar(q,p)+1.96*sigma );
+%pi_star_ave(p) = int(  (1/(1+exp(-f)))* (1/(sigma*sqrt(2*pi))) * exp(-(f-fstar(p))^2/(2*sigma^2)) , fstar(p)-1.96*sigma, fstar(p)+1.96*sigma );
 %pi_star_ave(q,p) = int( normf , fstar(q,p)-1.96*sigma, fstar(q,p)+1.96*sigma );
  
-        end
+     
     end
     
 pi_star = 1./(1+exp(-fstar));
@@ -74,8 +73,9 @@ pi_star = 1./(1+exp(-fstar));
 
 %  plot
 close all;
+
 %    figure
-  %color = [1 .8 .8];   
+%  color = [1 .8 .8];   
 %fill ([X_est; flipud(X_est)], [bounds(:,1); flipud(bounds(:,2))], color, 'EdgeColor', color); %draw the error region
 %contour(X_est(:,1),X_est(:,2),fstar,10,'ShowText','on');
 %plot3 (X(:,1),X(:,2),ti ,'b+')
@@ -87,18 +87,18 @@ close all;
 %    figure 
 %    contour(X_est(:,1),X_est(:,2),pi_star_ave,10,'ShowText','on');
 %    hold on
-   %data points
+%   %data points
 %    plot3 (X(:,1),X(:,2),ti ,'b+')
 %    xlabel('X1');
 %    ylabel('X2');
 %    zlabel('Pi');
-%    title('Averaged probability');
-
-    figure
-    contour(X_est(:,1),X_est(:,2),pi_star,10,'ShowText','on');
-    hold on
-    plot3 (X(:,1),X(:,2),ti ,'b+')
-    xlabel('X1');
-    ylabel('X2');
-    zlabel('sigma(f)');
-    title('MAP estimation');
+%    title('Averaged probability');%%
+%
+ %   figure
+ %   contour(X_est(:,1),X_est(:,2),pi_star,10,'ShowText','on');
+ %   hold on
+ %   plot3 (X(:,1),X(:,2),ti ,'b+')
+ %   xlabel('X1');
+ %   ylabel('X2');
+ %   zlabel('sigma(f)');
+ %   title('MAP estimation');

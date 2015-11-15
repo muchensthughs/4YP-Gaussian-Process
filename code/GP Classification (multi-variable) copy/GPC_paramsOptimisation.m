@@ -3,8 +3,8 @@ function [optimised_params, latent_f_opt, L, W, K] = GPC_paramsOptimisation (ini
 
 %initial samples for optimisation
 options = optimset('GradObj','on');
-l_bounds = [-1 0];
-sigmaf_bounds = [0 2];
+l_bounds = [-5 10];
+sigmaf_bounds = [0.2 0.8];
 f_bounds = [0 5];
 
 %numVars = sum(ind(:));
@@ -31,12 +31,9 @@ params_matrix = [];
 for i = 1:numSamples
     [local_opt_vars, local_fmin, exitflag] = fminunc(@(variables) GPC_calcLikelihood (variables,initialParams,ind, numPoints, X, Y), var_inits(i,:),options);
     params_matrix = [params_matrix; local_fmin local_opt_vars var_inits(i,:)];
-
 end
 
-
 params_matrix = sortrows(params_matrix);
-params_matrix(1,:)
 chosen_params = params_matrix(1,2:(end-1)); %exclude the local_fmin and choose the parameters only
 count = 1;
 for i = 1:3
