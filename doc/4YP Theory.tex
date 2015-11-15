@@ -69,32 +69,37 @@ The covariance function describes how observations are related to each other.
 \newpage
 \lhead{Gaussian Process Classification}
 \section{Gaussian Process Classification}
-From the last chapter, we know that regression involves continuous observation values. However, sometimes the output data is not continuous but a series of labels, where we wish to determine the class labels according to input x. This is the problem of classification. Similar ideas are adopted, except here regression is applied on a latent variable f and then the final class label is determined by 'squashing' f into range [0,1], from which the probability of a typical label.
+From the last chapter, we know that regression involves continuous observation values. However, sometimes the output data is not continuous but a series of labels, where we wish to determine the class labels according to input x. This is the problem of classification. Similar ideas are adopted, except here regression is applied on a latent variable f and then the probability of the class label is determined by 'squashing' f into range [0,1].
 
 \subsection{'Squashing' Function}
-The 'squashing' function can be any sigmoid[explanation] funciton. Two typical sigmoid functions that will be discussed are logistic function $\lambda (f)$ and cumulative Gaussian function $\phi (f)$.
+The 'squashing' function can be any sigmoid[explanation] funciton. Two typical sigmoid functions are logistic function $\lambda (f)$ and cumulative Gaussian function $\phi (f)$.
 
-
-Inference is hence devided into two steps. First is computing the distribution of the prediction latent variable $f_*$ in terms of previous observations 
+Inference is hence devided into two steps. First is to compute  the distribution of the prediction latent variable $f_*$ in terms of previous observations 
 
 \[p(\boldsymbol f_*|\boldsymbol X,\boldsymbol y,\boldsymbol x_*) = \int p(\boldsymbol f_*|\boldsymbol X,\boldsymbol x_*,\boldsymbol f)p(\boldsymbol f|\boldsymbol X,\boldsymbol y)\ d\boldsymbol f\]
 
 where \(p(\boldsymbol f|\boldsymbol X,\boldsymbol y) = {p(\boldsymbol y|\boldsymbol f)p(\boldsymbol f|\boldsymbol X)}/{p(\boldsymbol y|\boldsymbol X)}\) is the posterior of latent variables $\boldsymbol f$, which is estimated by MAP with respect to hyperpamaters($l$ and $\sigma_f$).
 
-After obtaining the information about predictive latent variable, the probabilistic prediction and estimated by
+After obtaining the information about predictive latent variable, the probabilistic prediction is estimated by
 
 \[\bar{\pi}_* = p(y_* = +1|X,y,x_*) = \int \sigma (f_*)p(f_*|X,y,x_*) df_*\] 
 
-This is called the averaged probility. One may argue that expectation of the prediction should be simply equal to the sigmoidal mean of $f_*$. These are actually two different things because of the non-linearity of sigmoid function, the first is $E[\pi_*|X,y,x_*]$ while the later one is $\sigma (E[f_*|y])$.
+This is called the averaged probility. One may argue that expectation of the prediction should be simply equal to the sigmoidal mean of $f_*$. These are actually two different things because of the non-linearity of sigmoid function, the first is $E[\pi_*|X,y,x_*]$ while the later one is $\sigma (E[f_*|y])$. However, the numerical values of these two are the same for binary classifications. 
 
 \subsection{The Laplace Approximation}
 
-Both of the intergrals metioned above are not analytically tractable. By doing a second order Taylor expansion of log$p(f|X,y)$ around its maximum point, a Gaussian approximation of the posterior $q(f|X,y)$ can be obtained.
+The integral for computing $p(f_*| X, y, x_*)$ is not analytically tractable. By doing a second order Taylor expansion of log$p(f|X,y)$ around its maximum point, we could obtain a Gaussian approximation of the posterior $q(f|X,y)$.
+
+\[p(f_*|,X,y) = \mathcal{N}(f|\hat{f},A^{-1}) \propto exp(-\frac{1}{2}(f-\hat{f})^T A(f-\hat{f}))\]
+
+where $\hat{f} = argmax_f p(f|X,y)$ and $A = -\bigtriangledown\bigtriangledown logp(f|X,y)|_{f=\hat{f}}$
 
 \subsection{Estimating the Model}
 
 
-\subsection{Probabilistic Prediction}
+\subsection{Probabilistic Predictions}
+Under the laplace approximation, 
+
 
 \subsection{Mathematical Implementation}
 \space
@@ -109,7 +114,10 @@ Commonly used convergence criteria depend on the difference between successive $
 
 \subsubsection{Maximised Marginal Likelihood}
 
-Gradient computation: 
+To find the optimised hyperparameters, as in regression, we need to compute the gradients of log likelihood of $\theta$ wrt. each hyperparameters $\theta_i$ 
+ 
+
+
 
 \subsubsection{Predictive Class Probability}
 Adding jitter -
