@@ -13,24 +13,28 @@ if ind(1) == 1,
 else
     l = initialParams(1);
 end
+l = exp(l);
 if ind(2) == 1,
     sigma_n = variables(varCount);
     varCount = varCount + 1;
 else
     sigma_n = initialParams(2);
 end
+sigma_n = exp(sigma_n);
 if ind(3) == 1,
     sigma_f = variables(varCount);
     varCount = varCount + 1;
 else
     sigma_f = initialParams(3);
 end
+sigma_f = exp(sigma_f);
 if ind(4) == 1,
     f = variables(varCount);
     varCount = varCount + 1;
 else
     f = initialParams(4);
 end
+%f = exp(f);
 
 
 

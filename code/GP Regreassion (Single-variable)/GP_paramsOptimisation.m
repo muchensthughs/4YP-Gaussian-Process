@@ -3,10 +3,11 @@ function [optimised_params] = GP_paramsOptimisation (initialParams, ind, numSamp
 
 %initial samples for optimisation
 options = optimset('GradObj','on');
-l_bounds = [1 10];
-sigman_bounds = [0.3 3];
-sigmaf_bounds = [0.3 3];
-f_bounds = [0 5];
+l_bounds = [log(0.1)  log(10)];
+sigman_bounds = [log(0.01) log(3)];
+sigmaf_bounds = [log(0.1) log(0.8)];
+f_bounds = [0 2];
+
 
 %numVars = sum(ind(:));
 %inits = zeros(numSamples, numVars);
@@ -34,11 +35,12 @@ end
 params_matrix = [];
 for i = 1:numSamples
     [variables, fval] = fminunc(@(variables) GP_calcLikelihood (variables,initialParams,ind, numPoints, X, Y), var_inits(i,:),options);
-    params_matrix = [params_matrix; fval variables];
+    params_matrix = [params_matrix; fval variables var_inits(i,:)];
 end
 
 params_matrix = sortrows(params_matrix);
 chosen_params = params_matrix(1,2:end);
+
 
 count = 1;
 for i = 1:4
