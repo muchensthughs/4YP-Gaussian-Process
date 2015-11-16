@@ -2,10 +2,9 @@
 
 params = GPC_combineParams(1, 0.3, 0);
 change_vars = [1, 1, 0];
-numSamples = 50;
+numSamples = 5;
 
-filename = 'US_data_email.xls';
-A = xlsread(filename);
+
 
 
 

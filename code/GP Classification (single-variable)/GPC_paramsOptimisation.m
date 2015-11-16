@@ -3,26 +3,32 @@ function [optimised_params, latent_f_opt, L, W, K] = GPC_paramsOptimisation (ini
 
 %initial samples for optimisation
 options = optimset('GradObj','on');
-l_bounds = [-1 0];
-sigmaf_bounds = [0 2];
-f_bounds = [0 5];
+l_bounds = [log(0.9) log(1)];
+sigmaf_bounds = [log(5) log(20)];
+f_bounds = [log(0.001) log(5)];
+
+
 
 %numVars = sum(ind(:));
 %inits = zeros(numSamples, numVars);
 var_inits = [];
-
-if ind(1)==1,
-    l_samples = uniformSample(l_bounds, numSamples);
-    var_inits = [var_inits l_samples];
-end
-if ind(2)==1,
-    sigmaf_samples = uniformSample(sigmaf_bounds, numSamples);
-    var_inits = [var_inits sigmaf_samples];
-end
-if ind(3)==1,
-    f_samples = uniformSample(f_bounds, numSamples);
-    var_inits = [var_inits f_samples];
-end
+%sampling over exponentiated values
+var_inits = lhs_sample(l_bounds, sigmaf_bounds, f_bounds, numSamples, ind, 'need exponential' );
+%take log of the samples so that the original sample values can be read
+%corretly in calcLikelihood.m
+var_inits = log(var_inits);
+%if ind(1)==1,
+%    l_samples = lhs_sample(l_bounds, numSamples);
+%    var_inits = [var_inits l_samples];
+%end
+%if ind(2)==1,
+%    sigmaf_samples = lhs_sample(sigmaf_bounds, numSamples);
+%    var_inits = [var_inits sigmaf_samples];
+%end
+%if ind(3)==1,
+%    f_samples = lhs_sample(f_bounds, numSamples);
+%    var_inits = [var_inits f_samples];
+%end
 
 
 %find the optimised set of parameters where function output of the

@@ -15,28 +15,28 @@ if ind(1) == 1,
 else
     l = initialParams(1);
 end
-l = exp(l);
+exp_l = exp(l);
 if ind(2) == 1,
     sigma_f = variables(varCount);
     varCount = varCount + 1;
 else
     sigma_f = initialParams(2);
 end
-sigma_f = exp(sigma_f);
+exp_sigma_f = exp(sigma_f);
 if ind(3) == 1,
     f = variables(varCount);
     varCount = varCount + 1;
 else
     f = initialParams(3);
 end
-f = exp(f);
+exp_f = exp(f);
 
 
 % covariance matrix and derivatives
 K = zeros(numPoints); dKdl = zeros(numPoints); dKdf = zeros(numPoints); dKdw = zeros(numPoints);
 for i = 1:numPoints,
     for j = 1:numPoints,
-        [K(i,j), dKdl(i,j), dKdf(i,j), dKdw(i,j)] = GPC_covariance (X(i),X(j),l, sigma_f, f);
+        [K(i,j), dKdl(i,j), dKdf(i,j), dKdw(i,j)] = GPC_covariance (X(i),X(j),exp_l, exp_sigma_f, exp_f);
     end
 end
 K = K + 1e3*eps.*eye(numPoints);
@@ -267,6 +267,7 @@ if ind(1) == 1,
     beta = dKdl*dlogpYf;
     s3 = beta - K*R*beta;
     dlogp_dl = s1 + s2' * s3;
+    dlogp_dl = dlogp_dl*exp_l;
     gradient = [gradient -dlogp_dl];
 end
 if ind(2) == 1,
@@ -274,6 +275,7 @@ if ind(2) == 1,
     beta = dKdf*dlogpYf;
     s3 = beta - K*R*beta;
     dlogp_df = s1 + s2' * s3;
+    dlogp_df = dlogp_df*exp_sigma_f;
     gradient = [gradient -dlogp_df];
 end
 if ind(3) == 1,
@@ -281,6 +283,7 @@ if ind(3) == 1,
     beta = dKdw*dlogpYf;
     s3 = beta - K*R*beta;
     dlogp_dw = s1 + s2' * s3;
+    dlogp_dw = dlogp_dw*exp_f;
     gradient = [gradient -dlogp_dw];
 end
 
