@@ -60,4 +60,6 @@ fill ([X_est; flipud(X_est)], [bounds(:,1); flipud(bounds(:,2))], color, 'EdgeCo
 
     plot (X_est,ymean_est,'k')
     plot (X,Y+meanY,'b+')
-
+    xlabel('X')
+    ylabel('Y')
+    title('Posterior Mean of Y and its Variance')

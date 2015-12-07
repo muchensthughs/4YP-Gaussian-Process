@@ -3,28 +3,32 @@ function [optimised_params, latent_f_opt, L, W, K] = GPC_paramsOptimisation (ini
 
 %initial samples for optimisation
 options = optimset('GradObj','on');
-l_bounds = [0.5 2];
-sigmaf_bounds = [0.3 0.5];
-f_bounds = [0 5];
+l_bounds = [log(1.0) log(2.0)];
+sigmaf_bounds = [log(18) log(30)];
+f_bounds = [log(0.01) log(5)];
 
 %numVars = sum(ind(:));
 %inits = zeros(numSamples, numVars);
-var_inits = [];
+%var_inits = [];
 
-if ind(1)==1,
-    l_samples = uniformSample(l_bounds, numSamples);
-    var_inits = [var_inits l_samples];
-end
-if ind(2)==1,
-    sigmaf_samples = uniformSample(sigmaf_bounds, numSamples);
-    var_inits = [var_inits sigmaf_samples];
-end
-if ind(3)==1,
-    f_samples = uniformSample(f_bounds, numSamples);
-    var_inits = [var_inits f_samples];
-end
+%if ind(1)==1,
+%   l_samples = uniformSample(l_bounds, numSamples);
+%    var_inits = [var_inits l_samples];
+%end
+%if ind(2)==1,
+%   sigmaf_samples = uniformSample(sigmaf_bounds, numSamples);
+%    var_inits = [var_inits sigmaf_samples];
+%end
+%if ind(3)==1,
+%    f_samples = uniformSample(f_bounds, numSamples);
+%    var_inits = [var_inits f_samples];
+%end
 
-
+%sampling over exponentiated values
+var_inits = lhs_sample(l_bounds, sigmaf_bounds, f_bounds, numSamples, ind, 'need exponential' );
+%take log of the samples so that the original sample values can be read
+%corretly in calcLikelihood.m
+var_inits = log(var_inits);
 %find the optimised set of parameters where function output of the
 %GP_calcLikelihood (log marginal likelihood) is maxmised
 params_matrix = [];
@@ -34,6 +38,7 @@ for i = 1:numSamples
 end
 
 params_matrix = sortrows(params_matrix);
+params_matrix(1,:)
 chosen_params = params_matrix(1,2:(end-1)); %exclude the local_fmin and choose the parameters only
 count = 1;
 for i = 1:3

@@ -67,7 +67,7 @@ sigma = sqrt(var(q,p));
     end
     
 pi_star = 1./(1+exp(-fstar));
-%var = var(:);
+
 %sigma = sigma(:);
 %bounds = [fstar+1.96.*sqrt(var) fstar-1.96.*sqrt(var)];
  
@@ -95,10 +95,21 @@ close all;
 %    title('Averaged probability');
 
     figure
-    contour(X_est(:,1),X_est(:,2),pi_star,10,'ShowText','on');
+    contour(X_est(:,1),X_est(:,2),pi_star,5,'ShowText','on');
     hold on
-    plot3 (X(:,1),X(:,2),ti ,'b+')
+    scatter (X(:,1),X(:,2),40, ti ,'filled')
+    colorbar
     xlabel('X1');
     ylabel('X2');
     zlabel('sigma(f)');
-    title('MAP estimation');
+    title('MAP estimation of Probability for class 1 (yellow dots)');
+    
+      figure
+    contour(X_est(:,1),X_est(:,2),var,8,'ShowText','on');
+    hold on
+    plot3 (X(:,1),X(:,2),ti ,'b+')
+    colorbar
+    xlabel('X1');
+    ylabel('X2');
+    zlabel('var(f)');
+    title('Variance of latent f');

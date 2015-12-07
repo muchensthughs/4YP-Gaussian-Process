@@ -3,7 +3,8 @@ function [X_est, ymean_est, K, Variance] = GP_inference ( X, Y, params, X_est)
 
 
 %  Initializations
-Y = Y - mean(Y);
+meanY = mean(Y);
+Y = Y - meanY;
 length_X = size(X,1); num_ests = length(X_est(:,1));
 K = zeros(length_X); K_est = zeros(length_X,1);
 
@@ -47,7 +48,7 @@ alpha = L'\(L\Y);
         end
     end
 %bounds = [ymean_est+1.96*sqrt(Variance) ymean_est-1.96*sqrt(Variance)]+mean(Y);
-ymean_est = ymean_est+mean(Y);
+ymean_est = ymean_est+meanY;
 
 
 
@@ -59,19 +60,22 @@ close all;
 %X_est = X_est';
 %fill ([X_est; flipud(X_est)], [bounds(:,1); flipud(bounds(:,2))], color, 'EdgeColor', color); %draw the error region
 %[x1,x2] = meshgrid(min(min(X)):0.1:max(max(X)));
-contour(X_est(:,1),X_est(:,2),ymean_est,10,'ShowText','on');
-plot3(X(:,1),X(:,2),Y+mean(Y),'b+');
-title('Posterior Y Plot');
+contourf(X_est(:,1),X_est(:,2),ymean_est,10,'ShowText','on');
+%plot3(X(:,1),X(:,2),Y+mean(Y),'b+');
+scatter(X(:,1),X(:,2),40,Y+mean(Y),'r+');
+colorbar
+title('Posterior Y');
 xlabel('X1');
 ylabel('X2');
 zlabel('Y');
 
 hold on;
 figure;
-contour(X_est(:,1),X_est(:,2),Variance,5,'ShowText','on');
+contourf(X_est(:,1),X_est(:,2),Variance,6,'ShowText','on');
 hold on;
-plot(X(:,1),X(:,2),'b+');
-title('Variance Plot');
+plot(X(:,1),X(:,2),'r+');
+colorbar
+title('Variance');
 xlabel('X1');
 ylabel('X2');
 zlabel('Var');

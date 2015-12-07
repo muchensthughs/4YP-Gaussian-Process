@@ -1,4 +1,4 @@
-function [d] = sqrd_distance (x1, x2, w)
+function [d, w_inv_sum] = ave_weighted_sqrd_distance (x1, x2, w)
 
 
 % calculate distance between x1 and x2 according to weight
@@ -14,7 +14,6 @@ end
 
 end
 
-d = 0;
-for n = 1:dim,
-    d = (x1(n) - x2(n))^2 / w(n)^2 + d;  
-end
+w_inv_sum = sum(1./(w.^2));
+d = sum( (x1 - x2).^2 ./ ((w.^2).*w_inv_sum) );
+

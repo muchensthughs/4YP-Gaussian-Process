@@ -2,9 +2,10 @@ function [optimised_params, latent_f_opt, L, W, K] = GPC_paramsOptimisation (ini
 
 
 %initial samples for optimisation
-options = optimset('GradObj','on');
-l_bounds = [log(0.9) log(1)];
-sigmaf_bounds = [log(5) log(20)];
+options = optimoptions(@fminunc,'Algorithm','quasi-newton','GradObj','on');
+%options = optimset('GradObj','on');
+l_bounds = [log(1) log(20)];
+sigmaf_bounds = [log(1) log(20)];
 f_bounds = [log(0.001) log(5)];
 
 
