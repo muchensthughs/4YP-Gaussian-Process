@@ -1,5 +1,5 @@
 \documentclass[11pt]{report}
-\title{The Future of Work}
+\title{The Future of Work: \\ Machine Learning and Employment}
 \author{Mu Chen}
 
 \usepackage[margin=0.787in]{geometry}
@@ -21,7 +21,6 @@
 \usepackage{setspace}
 \usepackage{gensymb}
 \usepackage{tablefootnote}
-
 \usepackage[T1]{fontenc}
 \usepackage{helvet}
 \renewcommand{\familydefault}{\sfdefault}
@@ -50,26 +49,47 @@
 
 \begin{document}
 \pagenumbering{roman}
+\newpage
+\maketitle
+ 
+\rhead{Table of Contents}
+\lhead{} 
+ 
+\tableofcontents
 
-\lhead{Introduction}
+\begin{spacing}{2}
+
+\newpage
+\pagenumbering{arabic}
+\setcounter{page}{1}
+
+
+\rhead{Introduction}
 \section{Introduction}
 The question of how computers can change future careers have been a popular issue recently. With the fast development of automation technologies, more jobs have become purely automated. Many people argued that the increase in unemployment rate is partly because this. Would it be true that more people will become jobless? Or is it just a short term phenomenon that does not represent future trends? This report represent how this problem is tackled in the respect of machine learning techniques. In particular, the property of jobs are analysed through Gaussian Process and the possibility of automation of the job can be predicted. 
 
 \newpage
-\lhead{Gaussian Process Regression}
+\rhead{Gaussian Process Regression}
 \section{Gaussian Process Regression}
 
 \subsection{Covariance Function}
 The covariance function describes how observations are related to each other.
 
-\[k(x,x\prime) = \sigma_f^2exp\big[\frac{-(x-x\prime)}{2l^2}\big]\]
+\[k(x,x\prime) = \sigma_f^2exp\big[-\frac{(x-x\prime)}{2l^2}\big]\]
 
 \subsection{Hyperparameters}
+To optimise the hyperparameters using Newton's method, we need the gradients of log likelihood of $\theta$ wrt. the hyperparameters $\theta_i$.  
+ 
+\begin{equation}
+\begin{split}
+\frac{\partial}{\partial \theta_i} logp(y|X,\theta) & = \frac{1}{2}y^T K^{-1}\frac{\partial K}{\partial \theta_i}K^{-1}y \, - \, \frac{1}{2}tr(K^{-1}\frac{\partial K}{\partial \theta_i}) \\ & = \frac{1}{2}tr\big( (\alpha\alpha^T - K^{-1})\frac{\partial K}{\partial \theta_i}\big) \quad \mbox{where}\quad\alpha = K^{-1}y
+\end{split}
+\end{equation}
 
-\newpage
-\lhead{Gaussian Process Classification}
+\rhead{Gaussian Process Classification}
 \section{Gaussian Process Classification}
-From the last chapter, we know that regression involves continuous observation values. However, sometimes the output data is not continuous but a series of labels, where we wish to determine the class labels according to input x. This is the problem of classification. Similar ideas are adopted, except here regression is applied on a latent variable f and then the probability of the class label is determined by 'squashing' f into range [0,1].
+Gaussian Process classification can be simply derived from GP regression except for the fact that outputs are now discrete numbers representing class labels (typically using 1 and -1 for binary class problems). Here, we introduce a latent variable f on which regression will be applied. Then the final step would be 'squashing' f into range [0,1] to give the propability of a certain class.
+
 
 \subsection{'Squashing' Function}
 The 'squashing' function can be any sigmoid[explanation] funciton. Two typical sigmoid functions are logistic function $\lambda (f)$ and cumulative Gaussian function $\phi (f)$.
@@ -82,47 +102,68 @@ where \(p(\boldsymbol f|\boldsymbol X,\boldsymbol y) = {p(\boldsymbol y|\boldsym
 
 After obtaining the information about predictive latent variable, the probabilistic prediction is estimated by
 
-\[\bar{\pi}_* = p(y_* = +1|X,y,x_*) = \int \sigma (f_*)p(f_*|X,y,x_*) df_*\] 
+\begin{equation}
+\bar{\pi}_* = p(y_* = +1|X,y,x_*) = \int \sigma (f_*)p(f_*|X,y,x_*) df_*
+\end{equation}
+
 
 This is called the averaged probility. One may argue that expectation of the prediction should be simply equal to the sigmoidal mean of $f_*$. These are actually two different things because of the non-linearity of sigmoid function, the first is $E[\pi_*|X,y,x_*]$ while the later one is $\sigma (E[f_*|y])$. However, the numerical values of these two are the same for binary classifications. 
 
 \subsection{The Laplace Approximation}
 
-The integral for computing $p(f_*| X, y, x_*)$ is not analytically tractable. By doing a second order Taylor expansion of log$p(f|X,y)$ around its maximum point, we could obtain a Gaussian approximation of the posterior $q(f|X,y)$.
+The integral for computing $p(f_*| X, y, x_*)$ is not analytically tractable. By doing a second order Taylor expansion of log$p(f|X,y)$ around its maximum point, we could obtain a Gaussian approximation of the posterior 
 
-\[p(f_*|,X,y) = \mathcal{N}(f|\hat{f},A^{-1}) \propto exp(-\frac{1}{2}(f-\hat{f})^T A(f-\hat{f}))\]
+\begin{equation}\label{LaplaceApp}
+q(f_*|X,y, x_*) = \mathcal{N}(f|\hat{f},A^{-1}) \propto exp(-\frac{1}{2}(f-\hat{f})^T A(f-\hat{f})) \,\sim\, p(f_*|X,y, x_*)
+\end{equation}
 
 where $\hat{f} = argmax_f p(f|X,y)$ and $A = -\bigtriangledown\bigtriangledown logp(f|X,y)|_{f=\hat{f}}$
 
-\subsection{Estimating the Model}
+\subsection{Building the Model}
 
 
 \subsection{Probabilistic Predictions}
-Under the laplace approximation, 
+
 
 
 \subsection{Mathematical Implementation}
 \space
 
-\subsubsection{Optimised latent variable $f$}
+\subsubsection{Optimising latent variable $f$}
 The best latent f should be estimated for each set of hyperparameters by solving 
 
 \[\hat{f} = K(\bigtriangledown logp(y|\hat{f}))\]
 
-Commonly used convergence criteria depend on the difference between successive $\Psi (f)$, the magnitude of gradient vetor $\bigtriangledown\Psi (f)$ or the defference between successive values of $f$. Note in practice, the convergence of objective functio is assured by checking that each iteration gives an increase in $\Psi (f)$. If not, a smaller step change in $f$ should be used.
+Commonly used convergence criteria depends on the difference between successive $\Psi (f)$, the magnitude of gradient vetor $\bigtriangledown\Psi (f)$ or the defference between successive values of $f$. Note in practice, the convergence of objective function is assured by checking that each iteration gives an increase in $\Psi (f)$. If not, a smaller step change in $f$ should be used.
 
 
-\subsubsection{Maximised Marginal Likelihood}
+\subsubsection{Maximising Marginal Likelihood}
 
-To find the optimised hyperparameters, as in regression, we need to compute the gradients of log likelihood of $\theta$ wrt. each hyperparameters $\theta_i$ 
- 
+Again, as in regression, we need to find the gradient of likelihood wrt. all hyperparameters we are trying to optimise. The case is slightly more difficult than regression as we introduced a latent variable $f$ and used Laplace's Approximation for likelihood itself. 
+
+Since kovariance matrix $K$ is a function of hyperparameters, therefore $\hat{f}$ and $W$ are implicitly functions of hyperparameters. The derivative of equation\ref{LaplaceApp} would be
+
+
+\begin{equation}
+\frac{\partial logq(y|X,\theta)}{\partial \theta_i} = \frac{\partial logq(y|X,\theta)}{\partial \theta_i}\bigg|_{explicit} + \sum_{i=1}^n \frac{\partial logq(y|X,\theta)}{\partial \hat{f}_i}\frac{\partial \hat{f}_i}{\partial \theta_i}
+\end{equation}
+
+where
+
+
+\begin{align} 
+\label{eq:al1}
+\frac{\partial logq(y|X,\theta)}{\partial \theta_i}\bigg|_{explicit} &= \frac{1}{2}\hat{f}^T K^{-1}\frac{\partial K}{\partial \theta_i}K^{-1}\hat{f} - \frac{1}{2}tr\Big((W^{-1}+K)^{-1}\frac{\partial K}{\partial \theta_i}\Big) \\ 
+\label{eq:al2}
+\frac{\partial logq(y|X,\theta)}{\partial \hat{f}_i} &= -\frac{1}{2} \big[(K^{-1}+W)^{-1}\big]_{ii}\frac{\partial^3}{\partial f_i^3}logp(y|\hat{f})
+\end{align}
 
 
 
 \subsubsection{Predictive Class Probability}
-Adding jitter -
+Adding jitter - Jitters are added in the diagonal of covariance matrix to make sure that K is positive definite. 
 \subsection{Multi-class Classification}
 
 
-
+\end{spacing}
 \end{document}
