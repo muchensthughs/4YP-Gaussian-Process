@@ -45,6 +45,10 @@ for q = 1:num_ests,
     v = L\K_est;
     y_noise = exp_sigma_n^2; % recall f* has no noise itself (Algorithm 2.1 on p 19 of H152)
     Variance(q) = GP_covariance (X_est(q),X_est(q),exp_l, exp_sigma_n, exp_sigma_f, exp_f) - v'*v + y_noise;
+%     var = Variance(q) - y_noise;
+%     if var<0,
+%         var
+%     end
 end
 bounds = [ymean_est+1.96.*sqrt(Variance) ymean_est-1.96.*sqrt(Variance)]+meanY;
 ymean_est = ymean_est+meanY;
@@ -60,6 +64,8 @@ fill ([X_est; flipud(X_est)], [bounds(:,1); flipud(bounds(:,2))], color, 'EdgeCo
 
     plot (X_est,ymean_est,'k')
     plot (X,Y+meanY,'b+')
-    xlabel('X')
-    ylabel('Y')
-    title('Posterior Mean of Y and its Variance')
+    xlabel('Input X')
+    ylabel('Output Y')
+    title('Posterior Mean and Variance of output Y')
+    ax = gca; % current axes
+    ax.FontSize = 14;

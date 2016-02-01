@@ -2,13 +2,13 @@ function [optimised_params, latent_f_opt, L, W, K] = GPC_paramsOptimisation (ini
 
 
 %real value bounds
-l_bounds = [1 10];
+l_bounds = [1 8];
 sigmaf_bounds= [1 5];
 f_bounds = [0.1 1];
 
 %weight_bounds = [1 5; 1 5; 1 5; 1 5;1 5;1 5;1 5;1 5;1 5;1 5;1 5; 1 5; 1 5; 1 5; 1 10; 1 10; 1 10];
-weight_bounds = zeros(17,2);
-weight_bounds(:,2) = 10;
+weight_bounds = zeros(numDims,2);
+weight_bounds(:,1) = 15;
 weight_bounds(:,2) = 20;
 %weight_bounds = [1 10; 1 10; 1 10; 1 10;1 10;1 10;1 10;1 10;1 10;1 10;1 10];
 

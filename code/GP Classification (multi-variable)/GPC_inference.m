@@ -13,7 +13,11 @@ w = params(3);
 
 l = exp(l);
 sigma_f = exp(sigma_f);
-w = exp(w);
+if w == 0;
+    w = 0;
+else
+    w = exp(w);
+end
 
 %calculate the covariance matrix for known X and use it to compute
 %parameters thta will be used in prediction
@@ -57,6 +61,9 @@ sqrtW = sqrt(W);
     %variance of prediction
     v = L\(sqrtW*K_est);
     var(q,p) = GPC_covariance (X_est_input, X_est_input,l, sigma_f, w) - v'*v;
+    if var(q,p) < 0,
+        var(q,p)
+    end
 sigma = sqrt(var(q,p));
 %syms f;
 %normf = normpdf(f, fstar(q,p)-1.96*sigma, fstar(q,p)+1.96*sigma);

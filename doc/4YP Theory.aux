@@ -1,16 +1,68 @@
 \relax 
 \providecommand \oddpage@label [2]{}
-\@writefile{toc}{\contentsline {section}{\numberline {0.1}Introduction}{i}}
-\@writefile{toc}{\contentsline {section}{\numberline {0.2}Gaussian Process Regression}{ii}}
-\@writefile{toc}{\contentsline {subsection}{\numberline {0.2.1}Covariance Function}{ii}}
-\@writefile{toc}{\contentsline {subsection}{\numberline {0.2.2}Hyperparameters}{ii}}
-\@writefile{toc}{\contentsline {section}{\numberline {0.3}Gaussian Process Classification}{iii}}
-\@writefile{toc}{\contentsline {subsection}{\numberline {0.3.1}'Squashing' Function}{iii}}
-\@writefile{toc}{\contentsline {subsection}{\numberline {0.3.2}The Laplace Approximation}{iii}}
-\@writefile{toc}{\contentsline {subsection}{\numberline {0.3.3}Estimating the Model}{iv}}
-\@writefile{toc}{\contentsline {subsection}{\numberline {0.3.4}Probabilistic Prediction}{iv}}
-\@writefile{toc}{\contentsline {subsection}{\numberline {0.3.5}Mathematical Implementation}{iv}}
-\@writefile{toc}{\contentsline {subsubsection}{Optimised latent variable $f$}{iv}}
-\@writefile{toc}{\contentsline {subsubsection}{Maximised Marginal Likelihood}{iv}}
-\@writefile{toc}{\contentsline {subsubsection}{Predictive Class Probability}{iv}}
-\@writefile{toc}{\contentsline {subsection}{\numberline {0.3.6}Multi-class Classification}{iv}}
+\citation{machin1998}
+\citation{bound1989changes}
+\@writefile{toc}{\contentsline {chapter}{\numberline {1}Introduction}{1}}
+\@writefile{lof}{\addvspace {10\p@ }}
+\@writefile{lot}{\addvspace {10\p@ }}
+\@writefile{toc}{\contentsline {chapter}{\numberline {2}Gaussian Process}{2}}
+\@writefile{lof}{\addvspace {10\p@ }}
+\@writefile{lot}{\addvspace {10\p@ }}
+\@writefile{toc}{\contentsline {subsubsection}{Mean Function}{3}}
+\@writefile{toc}{\contentsline {subsubsection}{Covariance Function}{3}}
+\citation{RW}
+\citation{RW}
+\@writefile{toc}{\contentsline {section}{\numberline {2.1}Gaussian Process Regression}{4}}
+\newlabel{cov_y}{{2.4}{4}}
+\@writefile{toc}{\contentsline {subsection}{\numberline {2.1.1}MLE and MAP for Setting Hyperparameters}{4}}
+\providecommand*\caption@xref[2]{\@setref\relax\@undefined{#1}}
+\newlabel{regression_model}{{\caption@xref {regression_model}{ on input line 158}}{5}}
+\@writefile{lof}{\contentsline {figure}{\numberline {2.1}{\ignorespaces The relation between input ($x$), observational output ($y$), and the latent variable ($f$). \newline  Figure from \cite  {RW}\relax }}{5}}
+\newlabel{pY_X}{{2.5}{5}}
+\newlabel{theta_likelihood}{{2.6}{6}}
+\newlabel{f_posterior}{{2.7}{6}}
+\@writefile{toc}{\contentsline {subsection}{\numberline {2.1.2}Predictions}{6}}
+\newlabel{predictive_mean_noise_free}{{2.11}{7}}
+\newlabel{predictive_covariance_noise_free}{{2.12}{7}}
+\newlabel{regression_1D_plot}{{\caption@xref {regression_1D_plot}{ on input line 258}}{7}}
+\@writefile{lof}{\contentsline {figure}{\numberline {2.2}{\ignorespaces Example plot of Regression with 1D input and output. Blue points represent the training set. Red region represents the variance of prediction. Note that the variance at the training points is almost reduced to zero as there is little uncertainty at these points (they are actually zero in noise free cases). The further way from training points, the more uncertain predictions become.\relax }}{7}}
+\@writefile{toc}{\contentsline {subsection}{\numberline {2.1.3}Computational Issues}{7}}
+\@writefile{toc}{\contentsline {subsubsection}{Conditioning on K}{7}}
+\citation{marelli2015distributed}
+\@writefile{toc}{\contentsline {subsubsection}{Cholesky Decomposition}{8}}
+\@writefile{toc}{\contentsline {subsubsection}{Partial Derivatives of Hyperparameters}{8}}
+\@writefile{toc}{\contentsline {section}{\numberline {2.2}Gaussian Process Classification}{9}}
+\@writefile{toc}{\contentsline {subsection}{\numberline {2.2.1}The 'Squashing' Function}{9}}
+\newlabel{classification_prediction}{{2.18}{9}}
+\newlabel{predictive_probability}{{2.19}{9}}
+\@writefile{toc}{\contentsline {subsection}{\numberline {2.2.2}The Laplace Approximation}{9}}
+\citation{azevedo1994laplace}
+\newlabel{LaplaceApp}{{2.20}{10}}
+\@writefile{toc}{\contentsline {section}{\numberline {2.3}Implementation}{10}}
+\@writefile{toc}{\contentsline {subsection}{\numberline {2.3.1}Optimising the latent variable}{10}}
+\@writefile{lof}{\contentsline {figure}{\numberline {2.3}{\ignorespaces Example plot of latent variable. Blue crosses are training points and red region is its variance. The variance now is never going to be zero because the latent function value is not told directly. While in noise free regression, the exact value of output at training points is told.\relax }}{11}}
+\newlabel{optimised_f}{{2.24}{11}}
+\@writefile{toc}{\contentsline {subsection}{\numberline {2.3.2}Maximising the Objective Function}{11}}
+\@writefile{lof}{\contentsline {figure}{\numberline {2.4}{\ignorespaces A simple example of 2-dimensional uniform sampling with 4 sampling intervals in each dimension.\relax }}{12}}
+\@writefile{toc}{\contentsline {subsubsection}{Sampling Methods for Hyperparameters}{12}}
+\@writefile{lof}{\contentsline {figure}{\numberline {2.5}{\ignorespaces Comparison between Latin Hypercube sapling and random sampling. Although Latin hypercube sampling may not represent the most variable overall (which can be improved by Orthogonal sampling), it gives a pretty good variability in each dimension. Random sampling deos not secure any variability. \relax }}{13}}
+\@writefile{toc}{\contentsline {subsubsection}{Derivatives of Hyperparameters}{13}}
+\citation{woodbury1950inverting}
+\newlabel{eq:al1}{{2.28}{14}}
+\newlabel{eq:al2}{{2.29}{14}}
+\@writefile{toc}{\contentsline {subsection}{\numberline {2.3.3}Predictive Probability}{14}}
+\newlabel{predictive_mean_classification}{{2.30}{14}}
+\newlabel{predictive_var_classification}{{2.31}{14}}
+\@writefile{lof}{\contentsline {figure}{\numberline {2.6}{\ignorespaces (a) the MAP prediction. (b) the averaged probability prediction. Blue crosses are training points (class label 1 and -1 but marked as 1 and 0 for better display). The MAP prediction goes to the extremes quicker while the averaged probability is more moderate and tend to be affeted by adjacent points\relax }}{15}}
+\citation{frey2013future}
+\@writefile{toc}{\contentsline {chapter}{\numberline {3}Gaussian Process for Employment}{16}}
+\@writefile{lof}{\addvspace {10\p@ }}
+\@writefile{lot}{\addvspace {10\p@ }}
+\bibstyle{unsrt}
+\bibdata{4YP}
+\@writefile{lof}{\contentsline {figure}{\numberline {3.1}{\ignorespaces A typical ROC curve plotted with 35 training data. \relax }}{17}}
+\bibcite{machin1998}{1}
+\bibcite{RW}{2}
+\bibcite{marelli2015distributed}{3}
+\bibcite{azevedo1994laplace}{4}
+\bibcite{woodbury1950inverting}{5}

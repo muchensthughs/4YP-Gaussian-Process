@@ -1,0 +1,33 @@
+\begin{thebibliography}{1}
+
+\bibitem{machin1998}
+John Van~Reenen Stephen~Machin.
+\newblock Technology and changes in skill structure: Evidence from seven oecd
+  countries.
+\newblock {\em The Quarterly Journal of Economics}, 113(4):1215--1244, 1998.
+
+\bibitem{RW}
+Carl~Edward Rasmussen and Christopher K.~I. Williams.
+\newblock {\em Gaussian Process for Machine Learning}.
+\newblock MIT Press, 2006.
+
+\bibitem{marelli2015distributed}
+Dami{\'a}n~Edgardo Marelli and Minyue Fu.
+\newblock Distributed weighted least-squares estimation with fast convergence
+  for large-scale systems.
+\newblock {\em Automatica}, 51:27--39, 2015.
+
+\bibitem{azevedo1994laplace}
+Adriano Azevedo-Filho and Ross~D Shachter.
+\newblock Laplace's method approximations for probabilistic inferencein belief
+  networks with continuous variables.
+\newblock In {\em Proceedings of the Tenth international conference on
+  Uncertainty in artificial intelligence}, pages 28--36. Morgan Kaufmann
+  Publishers Inc., 1994.
+
+\bibitem{woodbury1950inverting}
+Max~A Woodbury.
+\newblock Inverting modified matrices.
+\newblock {\em Memorandum report}, 42:106, 1950.
+
+\end{thebibliography}
