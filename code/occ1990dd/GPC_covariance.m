@@ -20,7 +20,7 @@ else
 end
 
 for i = 1:num_dims,
-dKdw(i) = covar * weights(i)^(-3)*(x1(i)^2 - x2(i)^2)/(l^2);
+dKdw(i) = covar * weights(i)^(-3)*(x1(i) - x2(i))^2/(l^2);
 %dKdw(i) = covar * (-1)/(l^2) * weights(i)^(-3)*( w_inv_sum^(-2)*(d_sq - weights(i)^(-2)*(x1(i)-x2(i))^2) +...
   %  (weights(i)^(-2) - 1/w_inv_sum)*((x1(i)-x2(i))^2));
 end

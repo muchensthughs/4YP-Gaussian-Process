@@ -1,4 +1,4 @@
-function [X_est, K, Variance, pi_star, pi_star_ave] = GPC_inference ( X, Y, params, X_est, latent_f_opt, L, W, K, num_dims)
+function [X_est, K, Variance, pi_star, pi_star_ave] = GPC_inference ( X, Y, params, X_est, latent_f_opt, L, W, num_dims)
 
 
 %f_mean = mean(latent_f_opt);
@@ -17,10 +17,12 @@ weights = weights';
 
 l = exp(l);
 sigma_f = exp(sigma_f);
+if ~w == 0,
 w = exp(w);
+end
 weights = exp(weights);
 %calculate the covariance matrix for known X and use it to compute
-%parameters thta will be used in prediction
+%parameters that will be used in prediction
 %for i = 1:length_X,
 %    for j = 1:length_X,
 %        K(i,j) = GPC_covariance (X(i), X(j), l, sigma_f, f);
@@ -33,24 +35,24 @@ fstar = zeros(num_ests,1); Variance = zeros(num_ests,1);
 ti = (Y + 1)/2 ;
 
     %%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%Probit function%%%%%%%%%%%%%%%%%%%%%%
-cdf = normcdf(Y.*latent_f_opt);
-pdf = normpdf(latent_f_opt);
-logpYf = log(cdf);
-logpYf = sum(logpYf);
-dlogpYf =( Y.*pdf)./ cdf;
+% cdf = normcdf(Y.*latent_f_opt);
+% pdf = normpdf(latent_f_opt);
+% logpYf = log(cdf);
+% logpYf = sum(logpYf);
+% dlogpYf =( Y.*pdf)./ cdf;
 
 
 %%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%Logistic%%%%%%%%%%%%%%%%%%%%%%%%%
 %with corrections!!!!!!!!!!
-% yf = Y.*latent_f_opt; s = -yf;
-%     ps   = max(0,s); 
-%     logpYf = -(ps+log(exp(-ps)+exp(s-ps))); 
-%     logpYf = sum(logpYf);
-%     s   = min(0,latent_f_opt); 
-%     p   = exp(s)./(exp(s)+exp(s-latent_f_opt));                    % p = 1./(1+exp(-f))
-%     dlogpYf = ti-p;                          % derivative of log likelihood                         % 2nd derivative of log likelihood
-%     d2logpYf = -exp(2*s-latent_f_opt)./(exp(s)+exp(s-latent_f_opt)).^2;
-%     d3logpYf = 2*d2logpYf.*(0.5-p);
+yf = Y.*latent_f_opt; s = -yf;
+    ps   = max(0,s); 
+    logpYf = -(ps+log(exp(-ps)+exp(s-ps))); 
+    logpYf = sum(logpYf);
+    s   = min(0,latent_f_opt); 
+    p   = exp(s)./(exp(s)+exp(s-latent_f_opt));                    % p = 1./(1+exp(-f))
+    dlogpYf = ti-p;                          % derivative of log likelihood                         % 2nd derivative of log likelihood
+    d2logpYf = -exp(2*s-latent_f_opt)./(exp(s)+exp(s-latent_f_opt)).^2;
+    d3logpYf = 2*d2logpYf.*(0.5-p);
 
 
 sqrtW = sqrt(W);
@@ -68,7 +70,7 @@ sqrtW = sqrt(W);
     %variance of prediction
     v = L\(sqrtW*K_est);
     var(p) = GPC_covariance (X_est(p,:), X_est(p,:),l, sigma_f, w, weights, num_dims) - v'*v;
-sigma = sqrt(var(p))
+
 
 %normf = normpdf(f, fstar(q,p)-1.96*sigma, fstar(q,p)+1.96*sigma);
 %pi_star_ave(p) = int(  (1/(1+exp(-f)))* (1/(sigma*sqrt(2*pi))) * exp(-(f-fstar(p))^2/(2*sigma^2)) , fstar(p)-1.96*sigma, fstar(p)+1.96*sigma );
@@ -76,8 +78,9 @@ sigma = sqrt(var(p))
  if var(p) < 0,
      var(p) = -var(p);
  end
- 
-  pi_star_ave(p) = normcdf(fstar(p)/sqrt(1+var(p)));   
+% pi_star_ave(p) = normcdf(fstar(p)/sqrt(1+var(p)));
+      ker = (1+ pi*var(p)/8)^(-1/2);
+    pi_star_ave(p) = 1/(1+exp(-ker*fstar(p))); 
     end
     
 pi_star = 1./(1+exp(-fstar));
