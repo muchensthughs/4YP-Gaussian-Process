@@ -1,4 +1,4 @@
-function [optimised_params, latent_f_opt, L, W, K] = GPC_paramsOptimisation (initialParams, ind, numSamples, numDims, numPoints, X, Y)
+function [optimised_params, latent_f_opt, L, W, K] = GPC_paramsOptimisation (initialParams, ind, numSamples, numDims, numPoints, X, Y,sig_func)
 
 
 %real value bounds
@@ -34,7 +34,7 @@ var_inits = log(var_inits);
 
 params_matrix = [];
 for i = 1:numSamples
-     funcObj = @(variables) GPC_calcLikelihood (variables,initialParams, ind,numDims, numPoints, X, Y);
+     funcObj = @(variables) GPC_calcLikelihood (variables,initialParams, ind,numDims, numPoints, X, Y,sig_func);
     funcProj = @(variables)boundProject(variables,lowerbound',upperbound');
    [local_opt_vars, local_fmin ] = minConf_PQN(funcObj, var_inits(i,:)',funcProj,[]);
 %   [local_opt_vars, local_fmin, exitflag] = fminunc(@(variables) GPC_calcLikelihood (variables,initialParams, ind,numDims, numPoints, X, Y), var_inits(i,:),options);
@@ -59,5 +59,5 @@ end
 
 %%using the optimised parameters to calculate the best latent f
 
-[~, ~, latent_f_opt, L, W, K] = GPC_calcLikelihood (optimised_params,optimised_params,ones(1,20),numDims, numPoints, X, Y);
+[~, ~, latent_f_opt, L, W, K] = GPC_calcLikelihood (optimised_params,optimised_params,ones(1,20),numDims, numPoints, X, Y,sig_func);
 

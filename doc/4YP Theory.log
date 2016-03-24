@@ -1,4 +1,4 @@
-This is pdfTeX, Version 3.14159265-2.6-1.40.15 (TeX Live 2014) (preloaded format=pdflatex 2014.10.22)  19 JAN 2016 16:41
+This is pdfTeX, Version 3.14159265-2.6-1.40.15 (TeX Live 2014) (preloaded format=pdflatex 2014.10.22)  22 MAR 2016 12:05
 entering extended mode
  restricted \write18 enabled.
  %&-line parsing enabled.
@@ -577,19 +577,19 @@ LaTeX Warning: Unused global option(s):
 (./4YP Theory.aux)
 \openout1 = `"4YP Theory.aux"'.
 
-LaTeX Font Info:    Checking defaults for OML/cmm/m/it on input line 55.
-LaTeX Font Info:    ... okay on input line 55.
-LaTeX Font Info:    Checking defaults for T1/cmr/m/n on input line 55.
-LaTeX Font Info:    ... okay on input line 55.
-LaTeX Font Info:    Checking defaults for OT1/cmr/m/n on input line 55.
-LaTeX Font Info:    ... okay on input line 55.
-LaTeX Font Info:    Checking defaults for OMS/cmsy/m/n on input line 55.
-LaTeX Font Info:    ... okay on input line 55.
-LaTeX Font Info:    Checking defaults for OMX/cmex/m/n on input line 55.
-LaTeX Font Info:    ... okay on input line 55.
-LaTeX Font Info:    Checking defaults for U/cmr/m/n on input line 55.
-LaTeX Font Info:    ... okay on input line 55.
-LaTeX Font Info:    Try loading font information for T1+phv on input line 55.
+LaTeX Font Info:    Checking defaults for OML/cmm/m/it on input line 56.
+LaTeX Font Info:    ... okay on input line 56.
+LaTeX Font Info:    Checking defaults for T1/cmr/m/n on input line 56.
+LaTeX Font Info:    ... okay on input line 56.
+LaTeX Font Info:    Checking defaults for OT1/cmr/m/n on input line 56.
+LaTeX Font Info:    ... okay on input line 56.
+LaTeX Font Info:    Checking defaults for OMS/cmsy/m/n on input line 56.
+LaTeX Font Info:    ... okay on input line 56.
+LaTeX Font Info:    Checking defaults for OMX/cmex/m/n on input line 56.
+LaTeX Font Info:    ... okay on input line 56.
+LaTeX Font Info:    Checking defaults for U/cmr/m/n on input line 56.
+LaTeX Font Info:    ... okay on input line 56.
+LaTeX Font Info:    Try loading font information for T1+phv on input line 56.
 
 (/usr/local/texlive/2014/texmf-dist/tex/latex/psnfss/t1phv.fd
 File: t1phv.fd 2001/06/04 scalable font definitions for T1/phv.
@@ -688,24 +688,24 @@ e
 Package caption Info: Begin \AtBeginDocument code.
 Package caption Info: float package is loaded.
 Package caption Info: End \AtBeginDocument code.
-LaTeX Info: Redefining \celsius on input line 55.
-Package gensymb Info: Faking symbols for \degree and \celsius on input line 55.
+LaTeX Info: Redefining \celsius on input line 56.
+Package gensymb Info: Faking symbols for \degree and \celsius on input line 56.
 
 
 
 Package gensymb Warning: Not defining \perthousand.
 
-LaTeX Info: Redefining \ohm on input line 55.
-Package gensymb Info: Using \Omega for \ohm on input line 55.
+LaTeX Info: Redefining \ohm on input line 56.
+Package gensymb Info: Using \Omega for \ohm on input line 56.
 
 Package gensymb Warning: Not defining \micro.
 
 \AtBeginShipoutBox=\box35
-LaTeX Font Info:    Try loading font information for U+msa on input line 58.
+LaTeX Font Info:    Try loading font information for U+msa on input line 59.
 (/usr/local/texlive/2014/texmf-dist/tex/latex/amsfonts/umsa.fd
 File: umsa.fd 2013/01/14 v3.01 AMS symbols A
 )
-LaTeX Font Info:    Try loading font information for U+msb on input line 58.
+LaTeX Font Info:    Try loading font information for U+msb on input line 59.
 
 (/usr/local/texlive/2014/texmf-dist/tex/latex/amsfonts/umsb.fd
 File: umsb.fd 2013/01/14 v3.01 AMS symbols B
@@ -713,10 +713,10 @@ File: umsb.fd 2013/01/14 v3.01 AMS symbols B
 
 {/usr/local/texlive/2014/texmf-var/fonts/map/pdftex/updmap/pdftex.map}]
 LaTeX Font Info:    Font shape `T1/phv/bx/n' in size <14.4> not available
-(Font)              Font shape `T1/phv/b/n' tried instead on input line 59.
+(Font)              Font shape `T1/phv/b/n' tried instead on input line 60.
  [1] [2]
 LaTeX Font Info:    Font shape `T1/phv/bx/n' in size <24.88> not available
-(Font)              Font shape `T1/phv/b/n' tried instead on input line 68.
+(Font)              Font shape `T1/phv/b/n' tried instead on input line 69.
 
 (./4YP Theory.toc
 LaTeX Font Info:    Font shape `T1/phv/bx/n' in size <10> not available
@@ -730,11 +730,7 @@ LaTeX Font Info:    Font shape `T1/phv/bx/n' in size <10> not available
 ]
 Chapter 1.
 LaTeX Font Info:    Font shape `T1/phv/bx/n' in size <20.74> not available
-(Font)              Font shape `T1/phv/b/n' tried instead on input line 78.
-
-LaTeX Warning: Citation `bound1989changes' on page 1 undefined on input line 80
-.
-
+(Font)              Font shape `T1/phv/b/n' tried instead on input line 79.
 [1
 
 ]
@@ -743,23 +739,23 @@ Chapter 2.
 
 ]
 
-LaTeX Warning: Command \' invalid in math mode on input line 129.
+LaTeX Warning: Command \' invalid in math mode on input line 130.
 
 Missing character: There is no é in font cmr7!
 [3] <Regression_model.pdf, id=35, 322.32419pt x 119.24548pt>
 File: Regression_model.pdf Graphic file (type pdf)
 
 <use Regression_model.pdf>
-Package pdftex.def Info: Regression_model.pdf used on input line 157.
+Package pdftex.def Info: Regression_model.pdf used on input line 158.
 (pdftex.def)             Requested size: 322.3234pt x 119.24518pt.
 LaTeX Font Info:    Font shape `T1/phv/bx/n' in size <9> not available
-(Font)              Font shape `T1/phv/b/n' tried instead on input line 159.
+(Font)              Font shape `T1/phv/b/n' tried instead on input line 160.
 
 
 LaTeX Warning: `h' float specifier changed to `ht'.
 
 LaTeX Font Info:    Font shape `T1/phv/bx/n' in size <12> not available
-(Font)              Font shape `T1/phv/b/n' tried instead on input line 163.
+(Font)              Font shape `T1/phv/b/n' tried instead on input line 164.
 [4] [5 <./Regression_model.pdf>] [6]
 Package epstopdf Info: Source file: <RegressionPlot1D.eps>
 (epstopdf)                    date: 2016-01-14 16:42:57
@@ -769,7 +765,7 @@ Package epstopdf Info: Source file: <RegressionPlot1D.eps>
 (epstopdf)                    size: 57461 bytes
 (epstopdf)             Command: <repstopdf --outfile=RegressionPlot1D-eps-conve
 rted-to.pdf RegressionPlot1D.eps>
-(epstopdf)             \includegraphics on input line 257.
+(epstopdf)             \includegraphics on input line 258.
 Package epstopdf Info: Output file is already uptodate.
 
 <RegressionPlot1D-eps-converted-to.pdf, id=145, 562.1pt x 421.575pt>
@@ -777,7 +773,7 @@ File: RegressionPlot1D-eps-converted-to.pdf Graphic file (type pdf)
 
 <use RegressionPlot1D-eps-converted-to.pdf>
 Package pdftex.def Info: RegressionPlot1D-eps-converted-to.pdf used on input li
-ne 257.
+ne 258.
 (pdftex.def)             Requested size: 281.04932pt x 210.78697pt.
  [7 <./RegressionPlot1D-eps-converted-to.pdf>] [8] [9] [10]
 Package epstopdf Info: Source file: <classification_latent_f.eps>
@@ -789,7 +785,7 @@ df>
 (epstopdf)                    size: 11359 bytes
 (epstopdf)             Command: <repstopdf --outfile=classification_latent_f-ep
 s-converted-to.pdf classification_latent_f.eps>
-(epstopdf)             \includegraphics on input line 385.
+(epstopdf)             \includegraphics on input line 386.
 Package epstopdf Info: Output file is already uptodate.
 
 <classification_latent_f-eps-converted-to.pdf, id=169, 562.1pt x 421.575pt>
@@ -797,33 +793,33 @@ File: classification_latent_f-eps-converted-to.pdf Graphic file (type pdf)
 
 <use classification_latent_f-eps-converted-to.pdf>
 Package pdftex.def Info: classification_latent_f-eps-converted-to.pdf used on i
-nput line 385.
+nput line 386.
 (pdftex.def)             Requested size: 281.04932pt x 210.78697pt.
  [11 <./classification_latent_f-eps-converted-to.pdf>] <Uniform_sampling.pdf, i
 d=181, 722.7pt x 542.025pt>
 File: Uniform_sampling.pdf Graphic file (type pdf)
 
 <use Uniform_sampling.pdf>
-Package pdftex.def Info: Uniform_sampling.pdf used on input line 410.
+Package pdftex.def Info: Uniform_sampling.pdf used on input line 411.
 (pdftex.def)             Requested size: 216.81166pt x 162.60875pt.
  [12 <./Uniform_sampling.pdf>]
 <LHS.pdf, id=202, 722.7pt x 542.025pt>
 File: LHS.pdf Graphic file (type pdf)
  <use LHS.pdf>
-Package pdftex.def Info: LHS.pdf used on input line 422.
+Package pdftex.def Info: LHS.pdf used on input line 423.
 (pdftex.def)             Requested size: 216.81166pt x 162.60875pt.
 
 <RS.pdf, id=203, 722.7pt x 542.025pt>
 File: RS.pdf Graphic file (type pdf)
  <use RS.pdf>
-Package pdftex.def Info: RS.pdf used on input line 428.
+Package pdftex.def Info: RS.pdf used on input line 429.
 (pdftex.def)             Requested size: 216.81166pt x 162.60875pt.
 
-Overfull \hbox (14.25291pt too wide) in paragraph at lines 420--431
+Overfull \hbox (14.25291pt too wide) in paragraph at lines 421--432
 []$[]$ |  $[]$ 
  []
 
-[13 <./LHS.pdf> <./RS.pdf>]
+[13 <./LHS.pdf> <./RS.pdf>] [14]
 Package epstopdf Info: Source file: <classification_MAP.eps>
 (epstopdf)                    date: 2016-01-14 17:34:22
 (epstopdf)                    size: 18918 bytes
@@ -832,15 +828,15 @@ Package epstopdf Info: Source file: <classification_MAP.eps>
 (epstopdf)                    size: 8760 bytes
 (epstopdf)             Command: <repstopdf --outfile=classification_MAP-eps-con
 verted-to.pdf classification_MAP.eps>
-(epstopdf)             \includegraphics on input line 492.
+(epstopdf)             \includegraphics on input line 493.
 Package epstopdf Info: Output file is already uptodate.
 
-<classification_MAP-eps-converted-to.pdf, id=239, 562.1pt x 421.575pt>
+<classification_MAP-eps-converted-to.pdf, id=242, 562.1pt x 421.575pt>
 File: classification_MAP-eps-converted-to.pdf Graphic file (type pdf)
 
 <use classification_MAP-eps-converted-to.pdf>
 Package pdftex.def Info: classification_MAP-eps-converted-to.pdf used on input 
-line 492.
+line 493.
 (pdftex.def)             Requested size: 224.83601pt x 168.627pt.
 Package epstopdf Info: Source file: <classification_ave.eps>
 (epstopdf)                    date: 2016-01-14 17:34:08
@@ -850,48 +846,39 @@ Package epstopdf Info: Source file: <classification_ave.eps>
 (epstopdf)                    size: 8965 bytes
 (epstopdf)             Command: <repstopdf --outfile=classification_ave-eps-con
 verted-to.pdf classification_ave.eps>
-(epstopdf)             \includegraphics on input line 498.
+(epstopdf)             \includegraphics on input line 499.
 Package epstopdf Info: Output file is already uptodate.
 
-<classification_ave-eps-converted-to.pdf, id=240, 562.1pt x 421.575pt>
+<classification_ave-eps-converted-to.pdf, id=243, 562.1pt x 421.575pt>
 File: classification_ave-eps-converted-to.pdf Graphic file (type pdf)
 
 <use classification_ave-eps-converted-to.pdf>
 Package pdftex.def Info: classification_ave-eps-converted-to.pdf used on input 
-line 498.
+line 499.
 (pdftex.def)             Requested size: 224.83601pt x 168.627pt.
 
-Overfull \hbox (9.24261pt too wide) in paragraph at lines 490--501
+Overfull \hbox (9.24261pt too wide) in paragraph at lines 491--502
 []$[]$ |  $[]$ 
  []
 
-[14] [15 <./classification_MAP-eps-converted-to.pdf> <./classification_ave-eps-
-converted-to.pdf>]
+[15 <./classification_MAP-eps-converted-to.pdf> <./classification_ave-eps-conve
+rted-to.pdf>]
 Chapter 3.
-
-LaTeX Warning: Citation `frey2013future' on page 16 undefined on input line 508
-.
-
 Package epstopdf Info: Source file: <ROC1.eps>
 (epstopdf)                    date: 2016-01-19 16:41:15
 (epstopdf)                    size: 15346 bytes
 (epstopdf)             Output file: <ROC1-eps-converted-to.pdf>
-(epstopdf)                    date: 2016-01-19 14:34:08
-(epstopdf)                    size: 7152 bytes
+(epstopdf)                    date: 2016-01-19 16:41:49
+(epstopdf)                    size: 8927 bytes
 (epstopdf)             Command: <repstopdf --outfile=ROC1-eps-converted-to.pdf 
 ROC1.eps>
-(epstopdf)             \includegraphics on input line 515.
-runsystem(repstopdf --outfile=ROC1-eps-converted-to.pdf ROC1.eps)...executed sa
-fely (allowed).
-
-Package epstopdf Info: Result file: <ROC1-eps-converted-to.pdf>
-(epstopdf)                    date: 2016-01-19 16:41:49
-(epstopdf)                    size: 8927 bytes.
+(epstopdf)             \includegraphics on input line 525.
+Package epstopdf Info: Output file is already uptodate.
 <ROC1-eps-converted-to.pdf, id=264, 562.1pt x 421.575pt>
 File: ROC1-eps-converted-to.pdf Graphic file (type pdf)
 
 <use ROC1-eps-converted-to.pdf>
-Package pdftex.def Info: ROC1-eps-converted-to.pdf used on input line 515.
+Package pdftex.def Info: ROC1-eps-converted-to.pdf used on input line 525.
 (pdftex.def)             Requested size: 281.04932pt x 210.78697pt.
  [16
 
@@ -900,11 +887,7 @@ LaTeX Font Info:    Font shape `T1/phv/m/it' in size <10> not available
 (Font)              Font shape `T1/phv/m/sl' tried instead on input line 7.
 ) [18
 
-] (./4YP Theory.aux)
-
-LaTeX Warning: There were undefined references.
-
- )
+] (./4YP Theory.aux) )
 (\end occurred inside a group at level 1)
 
 ### semi simple group (level 1) entered at line 53 (\begingroup)
@@ -912,7 +895,7 @@ LaTeX Warning: There were undefined references.
 Here is how much of TeX's memory you used:
  7436 strings out of 493117
  106904 string characters out of 6135432
- 194833 words of memory out of 5000000
+ 193839 words of memory out of 5000000
  10679 multiletter control sequences out of 15000+600000
  51213 words of font info for 81 fonts, out of 8000000 for 9000
  1141 hyphenation exceptions out of 8191
@@ -944,7 +927,7 @@ ive/2014/texmf-dist/fonts/type1/public/amsfonts/symbols/msbm10.pfb></usr/local/
 texlive/2014/texmf-dist/fonts/type1/urw/helvetic/uhvb8a.pfb></usr/local/texlive
 /2014/texmf-dist/fonts/type1/urw/helvetic/uhvr8a.pfb></usr/local/texlive/2014/t
 exmf-dist/fonts/type1/urw/helvetic/uhvro8a.pfb>
-Output written on "4YP Theory.pdf" (22 pages, 792877 bytes).
+Output written on "4YP Theory.pdf" (22 pages, 794317 bytes).
 PDF statistics:
  337 PDF objects out of 1000 (max. 8388607)
  244 compressed objects within 3 object streams

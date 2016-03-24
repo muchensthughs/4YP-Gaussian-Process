@@ -1,4 +1,4 @@
-function [X_est, K, Variance, pi_star, pi_star_ave] = GPC_inference ( X, Y, params, X_est, latent_f_opt, L, W, num_dims)
+function [X_est, K, Variance, pi_star, pi_star_ave] = GPC_inference ( X, Y, params, X_est, latent_f_opt, L, W, num_dims,sig_func)
 
 
 %f_mean = mean(latent_f_opt);
@@ -35,15 +35,17 @@ fstar = zeros(num_ests,1); Variance = zeros(num_ests,1);
 ti = (Y + 1)/2 ;
 
     %%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%Probit function%%%%%%%%%%%%%%%%%%%%%%
-% cdf = normcdf(Y.*latent_f_opt);
-% pdf = normpdf(latent_f_opt);
-% logpYf = log(cdf);
-% logpYf = sum(logpYf);
-% dlogpYf =( Y.*pdf)./ cdf;
+    if strcmp(sig_func , 'probit'),
+cdf = normcdf(Y.*latent_f_opt);
+pdf = normpdf(latent_f_opt);
+logpYf = log(cdf);
+logpYf = sum(logpYf);
+dlogpYf =( Y.*pdf)./ cdf;
 
 
 %%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%Logistic%%%%%%%%%%%%%%%%%%%%%%%%%
 %with corrections!!!!!!!!!!
+    elseif strcmp(sig_func , 'logistic'),
 yf = Y.*latent_f_opt; s = -yf;
     ps   = max(0,s); 
     logpYf = -(ps+log(exp(-ps)+exp(s-ps))); 
@@ -53,7 +55,7 @@ yf = Y.*latent_f_opt; s = -yf;
     dlogpYf = ti-p;                          % derivative of log likelihood                         % 2nd derivative of log likelihood
     d2logpYf = -exp(2*s-latent_f_opt)./(exp(s)+exp(s-latent_f_opt)).^2;
     d3logpYf = 2*d2logpYf.*(0.5-p);
-
+    end
 
 sqrtW = sqrt(W);
 %  estimation 
@@ -78,12 +80,21 @@ sqrtW = sqrt(W);
  if var(p) < 0,
      var(p) = -var(p);
  end
-% pi_star_ave(p) = normcdf(fstar(p)/sqrt(1+var(p)));
-      ker = (1+ pi*var(p)/8)^(-1/2);
-    pi_star_ave(p) = 1/(1+exp(-ker*fstar(p))); 
+ %probit
+ if strcmp(sig_func , 'probit'),
+ pi_star_ave(p) = normcdf(fstar(p)/sqrt(1+var(p)));
+%logistic
+ elseif strcmp(sig_func , 'logistic'),
+    ker = (1+ pi*var(p)/8)^(-1/2);
+  pi_star_ave(p) = 1/(1+exp(-ker*fstar(p))); 
+ end
     end
     
+if strcmp(sig_func , 'logistic'),    
 pi_star = 1./(1+exp(-fstar));
+elseif strcmp(sig_func , 'probit'),
+pi_star = normcdf(fstar);
+end
 
 %var = var(:);
 %sigma = sigma(:);

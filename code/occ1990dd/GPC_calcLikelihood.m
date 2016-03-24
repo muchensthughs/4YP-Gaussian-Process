@@ -1,5 +1,5 @@
 
-function [fval, gradient, latent_f, L, W, K] = GPC_calcLikelihood (variables,initialParams, ind, numDims,numPoints, X, Y)
+function [fval, gradient, latent_f, L, W, K] = GPC_calcLikelihood (variables,initialParams, ind, numDims,numPoints, X, Y,sig_func)
 
 
 % loading the parameters
@@ -63,6 +63,7 @@ ti = (Y+1)/2;
 
 %%%%%%%%%%%%%%%%%%%%%%%%%%%%%Logistic%%%%%%%%%%%%%%%%%%%%%%
 %with correction
+if strcmp(sig_func , 'logistic'),
 yf = Y.*latent_f; s = -yf;
   ps   = max(0,s); 
   logpYf = -(ps+log(exp(-ps)+exp(s-ps))); 
@@ -85,15 +86,16 @@ yf = Y.*latent_f; s = -yf;
 %logpYf = sum(logpYf);
 
 %%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%Probit function%%%%%%%%%%%%%%%%%%%%%%
-% cdf = normcdf(Y.*latent_f);
-% pdf = normpdf(latent_f);
-% logpYf = log(cdf);
-% logpYf = sum(logpYf);
-% dlogpYf =( Y.*pdf)./ cdf;
-% d2logpYf = - (Y.*Y.*pdf.*pdf)./(cdf.*cdf) - (Y.*latent_f.*pdf)./cdf;
+elseif strcmp(sig_func , 'probit'),
+ cdf = normcdf(Y.*latent_f);
+ pdf = normpdf(latent_f);
+ logpYf = log(cdf);
+ logpYf = sum(logpYf);
+ dlogpYf =( Y.*pdf)./ cdf;
+ d2logpYf = - (Y.*Y.*pdf.*pdf)./(cdf.*cdf) - (Y.*latent_f.*pdf)./cdf;
+end
 
-
-
+%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%
 a0 = zeros(numPoints,1);
 a_mat(:,1) = a0; 
 obj = logpYf - (1/2)*a0'*latent_f ;
@@ -163,19 +165,21 @@ latent_f = K*a;
  
 
     %%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%Probit function%%%%%%%%%%%%%%%%%%%%%%
-% cdf = normcdf(Y.*latent_f);
-% pdf = normpdf(latent_f);
-% logpYf = log(cdf);
-% logpYf = sum(logpYf);
-% obj = logpYf - (1/2)*a'*latent_f ;
-% obj_mat(count) = obj;
-% change = obj_mat(count) - obj_mat(count - 1);
-% dlogpYf =( Y.*pdf)./ cdf;
-% d2logpYf = - (Y.*Y.*pdf.*pdf)./(cdf.*cdf) - (Y.*latent_f.*pdf)./cdf;
-% obj_grad = dlogpYf - K'*latent_f;
+    if strcmp(sig_func , 'probit'),
+cdf = normcdf(Y.*latent_f);
+pdf = normpdf(latent_f);
+logpYf = log(cdf);
+logpYf = sum(logpYf);
+obj = logpYf - (1/2)*a'*latent_f ;
+obj_mat(count) = obj;
+change = obj_mat(count) - obj_mat(count - 1);
+dlogpYf =( Y.*pdf)./ cdf;
+d2logpYf = - (Y.*Y.*pdf.*pdf)./(cdf.*cdf) - (Y.*latent_f.*pdf)./cdf;
+obj_grad = dlogpYf - K'*latent_f;
 
 %%%%%%%%%%%%%%%%%%%%%%%%%%%Logistic%%%%%%%%%%%%%%%%%%%%%%%%%%%%
     %with corrections!!!!!!!!!!!
+    elseif strcmp(sig_func , 'logistic'),
     yf = Y.*latent_f; s = -yf;
     ps   = max(0,s); 
     logpYf = -(ps+log(exp(-ps)+exp(s-ps))); 
@@ -188,7 +192,7 @@ latent_f = K*a;
     obj_mat(count) = obj;
     change = obj_mat(count) - obj_mat(count - 1);
     obj_grad = dlogpYf - K'*latent_f;
-
+    end
 %%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%
      
     
@@ -336,16 +340,18 @@ latent_f = K*a;
 %a = b - sqrtW*L'\(L\(sqrtW*K*b));
 
 %%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%Probit function%%%%%%%%%%%%%%%%%%%%%%
-% cdf = normcdf(Y.*latent_f);
-% pdf = normpdf(latent_f);
-% logpYf = log(cdf);
-% logpYf = sum(logpYf);
-% dlogpYf =( Y.*pdf)./ cdf;
-% d2logpYf = - (Y.*Y.*pdf.*pdf)./(cdf.*cdf) - (Y.*latent_f.*pdf)./cdf;
-% d3logpYf  = (3.*Y.*Y.*pdf.*pdf.*latent_f)./(cdf.*cdf) + (2.*Y.*Y.*Y.*pdf.*pdf.*pdf - Y.*pdf.*(1 - latent_f.*latent_f))./(cdf.*cdf.*cdf);
+if strcmp(sig_func , 'probit'),
+cdf = normcdf(Y.*latent_f);
+pdf = normpdf(latent_f);
+logpYf = log(cdf);
+logpYf = sum(logpYf);
+dlogpYf =( Y.*pdf)./ cdf;
+d2logpYf = - (Y.*Y.*pdf.*pdf)./(cdf.*cdf) - (Y.*latent_f.*pdf)./cdf;
+d3logpYf  = (3.*Y.*Y.*pdf.*pdf.*latent_f)./(cdf.*cdf) + (2.*Y.*Y.*Y.*pdf.*pdf.*pdf - Y.*pdf.*(1 - latent_f.*latent_f))./(cdf.*cdf.*cdf);
 
 %%%%%%%%%%%%%%%%%%%%%%%%%%%%Logistic%%%%%%%%%%%%%%%%%%%%%%%%%%%
 % with corrections!!!!!!!!!!!
+elseif strcmp(sig_func , 'logistic'),
 yf = Y.*latent_f; s = -yf;
     ps   = max(0,s); 
     logpYf = -(ps+log(exp(-ps)+exp(s-ps))); 
@@ -359,7 +365,7 @@ yf = Y.*latent_f; s = -yf;
     obj_mat(count) = obj;
     change = obj_mat(count) - obj_mat(count - 1);
     obj_grad = dlogpYf - K'*latent_f;
-
+end
 
 % Log marginal likelihood and its gradients w.r.t. hyperparameters
 logqYX = -a'*latent_f/2 - sum(log(diag(L))) + logpYf;

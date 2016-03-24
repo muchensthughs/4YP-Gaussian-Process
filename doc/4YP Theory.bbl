@@ -6,6 +6,12 @@ John Van~Reenen Stephen~Machin.
   countries.
 \newblock {\em The Quarterly Journal of Economics}, 113(4):1215--1244, 1998.
 
+\bibitem{bound1989changes}
+John Bound and George~E Johnson.
+\newblock Changes in the structure of wages during the 1980's: An evaluation of
+  alternative explanations.
+\newblock Technical report, National Bureau of Economic Research, 1989.
+
 \bibitem{RW}
 Carl~Edward Rasmussen and Christopher K.~I. Williams.
 \newblock {\em Gaussian Process for Machine Learning}.
@@ -29,5 +35,11 @@ Adriano Azevedo-Filho and Ross~D Shachter.
 Max~A Woodbury.
 \newblock Inverting modified matrices.
 \newblock {\em Memorandum report}, 42:106, 1950.
+
+\bibitem{frey2013future}
+Carl~Benedikt Frey and Michael~A Osborne.
+\newblock The future of employment: how susceptible are jobs to
+  computerisation.
+\newblock {\em Retrieved September}, 7:2013, 2013.
 
 \end{thebibliography}

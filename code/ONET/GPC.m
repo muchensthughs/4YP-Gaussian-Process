@@ -26,6 +26,7 @@ results_running = running_data(:,2);
 
 num_dims = 17;
 numSamples = 40;
+sig_func = 'probit';
 
  mean_A = mean (X_all);
  num_inst = length(X_all(:,1));
@@ -199,7 +200,7 @@ for k = 1:1,
  test_Y = test_Y';
 
 numInputPoints = size(train_X,1);
-[optimised_params, latent_f_opt, L, W, K] = GPC_paramsOptimisation(params, change_vars, numSamples,num_dims, numInputPoints,train_X,train_Y);
+[optimised_params, latent_f_opt, L, W, K] = GPC_paramsOptimisation(params, change_vars, numSamples,num_dims, numInputPoints,train_X,train_Y,sig_func);
 %optimised_params_all = [optimised_params_all; optimised_params];
 %[test_X, K, variance, pi_star, pi_star_ave] = GPC_inference(train_X, train_Y, optimised_params, test_X, latent_f_opt, L, W, num_dims);
 
@@ -248,7 +249,7 @@ optimised_params(:)
 % ylabel('MO');
 % title ( 'MAP estimation of probability comparison(labelled data excluded)');
 
-[X_all, K, variance, pi_star, pi_star_ave] = GPC_inference(train_X, train_Y, optimised_params, X_all, latent_f_opt, L, W, num_dims);
+[X_all, K, variance, pi_star, pi_star_ave] = GPC_inference(train_X, train_Y, optimised_params, X_all, latent_f_opt, L, W, num_dims,sig_func);
 
 figure
 plot( pi_star_ave,results_all,'b+');
