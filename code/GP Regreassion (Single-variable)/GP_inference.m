@@ -18,7 +18,7 @@ f = params(4);
 exp_l = exp(l);
 exp_sigma_n = exp(sigma_n);
 exp_sigma_f = exp(sigma_f);
-exp_f = exp(f);
+exp_f = f;
 
 for i = 1:length_X,
     for j = 1:length_X,
@@ -55,15 +55,18 @@ ymean_est = ymean_est+meanY;
 
 % d) plot
 close all;
-    figure, hold on
+    figure
 
     color = [1 .8 .8];
 X_est = X_est(:);
 fill ([X_est; flipud(X_est)], [bounds(:,1); flipud(bounds(:,2))], color, 'EdgeColor', color); %draw the error region
-
+hold on
 
     plot (X_est,ymean_est,'k')
+    hold on
     plot (X,Y+meanY,'b+')
+
+    hold on
     xlabel('Input X')
     ylabel('Output Y')
     title('Posterior Mean and Variance of output Y')

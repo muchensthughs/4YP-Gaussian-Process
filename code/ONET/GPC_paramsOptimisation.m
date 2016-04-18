@@ -1,4 +1,4 @@
-function [optimised_params, latent_f_opt, L, W, K] = GPC_paramsOptimisation (initialParams, ind, numSamples, numDims, numPoints, X, Y,sig_func)
+function [optimised_params, latent_f_opt, L, W, K,fval] = GPC_paramsOptimisation (initialParams, ind, numSamples, numDims, numPoints, X, Y,sig_func)
 
 
 %real value bounds
@@ -9,7 +9,7 @@ f_bounds = [0.1 1];
 %weight_bounds = [1 5; 1 5; 1 5; 1 5;1 5;1 5;1 5;1 5;1 5;1 5;1 5; 1 5; 1 5; 1 5; 1 10; 1 10; 1 10];
 weight_bounds = zeros(numDims,2);
 weight_bounds(:,1) = 1;
-weight_bounds(:,2) = 25;
+weight_bounds(:,2) = 30;
 %weight_bounds = [1 10; 1 10; 1 10; 1 10;1 10;1 10;1 10;1 10;1 10;1 10;1 10];
 
 %weight_bounds = [1 100];
@@ -59,5 +59,5 @@ end
 
 %%using the optimised parameters to calculate the best latent f
 
-[~, ~, latent_f_opt, L, W, K] = GPC_calcLikelihood (optimised_params,optimised_params,ones(1,20),numDims, numPoints, X, Y,sig_func);
+[fval, ~, latent_f_opt, L, W, K] = GPC_calcLikelihood (optimised_params,optimised_params,ones(1,20),numDims, numPoints, X, Y,sig_func);
 

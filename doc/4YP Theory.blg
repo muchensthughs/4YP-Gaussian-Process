@@ -3,44 +3,44 @@ Capacity: max_strings=35307, hash_size=35307, hash_prime=30011
 The top-level auxiliary file: 4YP Theory.aux
 The style file: unsrt.bst
 Database file #1: 4YP.bib
-You've used 7 entries,
+You've used 22 entries,
             1791 wiz_defined-function locations,
-            494 strings with 4755 characters,
-and the built_in function-call counts, 1467 in all, are:
-= -- 138
-> -- 48
+            572 strings with 7120 characters,
+and the built_in function-call counts, 3971 in all, are:
+= -- 366
+> -- 133
 < -- 1
-+ -- 19
-- -- 12
-* -- 80
-:= -- 238
-add.period$ -- 22
-call.type$ -- 7
-change.case$ -- 7
++ -- 55
+- -- 33
+* -- 197
+:= -- 614
+add.period$ -- 67
+call.type$ -- 22
+change.case$ -- 20
 chr.to.int$ -- 0
-cite$ -- 7
-duplicate$ -- 71
-empty$ -- 153
-format.name$ -- 12
-if$ -- 334
+cite$ -- 22
+duplicate$ -- 182
+empty$ -- 448
+format.name$ -- 33
+if$ -- 911
 int.to.chr$ -- 0
-int.to.str$ -- 7
-missing$ -- 7
-newline$ -- 38
-num.names$ -- 7
-pop$ -- 19
+int.to.str$ -- 22
+missing$ -- 18
+newline$ -- 113
+num.names$ -- 18
+pop$ -- 89
 preamble$ -- 1
 purify$ -- 0
 quote$ -- 0
-skip$ -- 31
+skip$ -- 78
 stack$ -- 0
-substring$ -- 91
-swap$ -- 14
+substring$ -- 210
+swap$ -- 28
 text.length$ -- 1
 text.prefix$ -- 0
 top$ -- 0
 type$ -- 0
 warning$ -- 0
-while$ -- 15
-width$ -- 8
-write$ -- 79
+while$ -- 36
+width$ -- 24
+write$ -- 229

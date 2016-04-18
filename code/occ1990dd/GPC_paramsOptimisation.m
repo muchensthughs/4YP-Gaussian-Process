@@ -1,29 +1,49 @@
-function [optimised_params, latent_f_opt, L, W, K] = GPC_paramsOptimisation (initialParams, ind, numSamples, numDims, numPoints, X, Y,sig_func)
+function [optimised_params, latent_f_opt, L, W, K,fval] = GPC_paramsOptimisation (initialParams, ind, numSamples, numDims, numPoints, X, Y,sig_func)
 
 
 %real value bounds
-l_bounds = [0.01 10];
-sigmaf_bounds= [1 15];
+l_bounds = [1 10];
+sigmaf_bounds= [1 10];
 f_bounds = [0.1 1];
 
 %weight_bounds = [1 5; 1 5; 1 5; 1 5;1 5;1 5;1 5;1 5;1 5;1 5;1 5; 1 5; 1 5; 1 5; 1 10; 1 10; 1 10];
 weight_bounds = zeros(numDims,2);
-weight_bounds(:,1) = 0.1;
-weight_bounds(:,2) = 250;
+weight_bounds(:,1) = 1;
+weight_bounds(:,2) = 50;
 %weight_bounds = [1 10; 1 10; 1 10; 1 10;1 10;1 10;1 10;1 10;1 10;1 10;1 10];
 
 %weight_bounds = [1 100];
 %initial samples for optimisation
+upperbound = [];
+lowerbound = [];
 options = optimoptions(@fminunc,'Algorithm','quasi-newton','GradObj','on');
 l_bounds = [log(l_bounds(1)) log(l_bounds(2))];
+if ind(1) == 1,
+upperbound = [upperbound l_bounds(2)];
+lowerbound = [lowerbound l_bounds(1)];
+end
 sigmaf_bounds = [log(sigmaf_bounds(1)) log(sigmaf_bounds(2))];
+if ind(2) == 1,
+upperbound = [upperbound l_bounds(2)];
+lowerbound = [lowerbound l_bounds(1)];
+end
 f_bounds = [log(f_bounds(1)) log(f_bounds(2))];
-for i=1:numDims,
- weight_bounds(i,:) = [log(weight_bounds(i,1)) log(weight_bounds(i,2))];
+if ind(3) == 1,
+upperbound = [upperbound f_bounds(2)];
+lowerbound = [lowerbound f_bounds(1)];
 end
 
-upperbound = [l_bounds(2), sigmaf_bounds(2), weight_bounds(:,2)'];
-lowerbound = [l_bounds(1), sigmaf_bounds(1), weight_bounds(:,1)'];
+for i=1:numDims,
+ weight_bounds(i,:) = [log(weight_bounds(i,1)) log(weight_bounds(i,2))];
+ if ind(i+3) == 1,
+     upperbound = [upperbound weight_bounds(i,2)];
+     lowerbound = [lowerbound weight_bounds(i,1)];
+ end
+end
+
+
+
+
 %sampling over exponentiated values
 var_inits = lhs_sample(l_bounds, sigmaf_bounds, f_bounds, weight_bounds, numSamples, numDims, ind, 'need exponential' );
 %take log of the samples so that the original sample values can be read
@@ -59,5 +79,5 @@ end
 
 %%using the optimised parameters to calculate the best latent f
 
-[~, ~, latent_f_opt, L, W, K] = GPC_calcLikelihood (optimised_params,optimised_params,ones(1,length(ind)),numDims, numPoints, X, Y,sig_func);
-
+[fval, ~, latent_f_opt, L, W, K] = GPC_calcLikelihood (optimised_params,optimised_params,ones(1,length(ind)),numDims, numPoints, X, Y,sig_func);
+fval = -fval;

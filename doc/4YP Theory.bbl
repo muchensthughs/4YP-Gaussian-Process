@@ -1,4 +1,16 @@
-\begin{thebibliography}{1}
+\begin{thebibliography}{10}
+
+\bibitem{frey2013future}
+Carl~Benedikt Frey and Michael~A Osborne.
+\newblock The future of employment: how susceptible are jobs to
+  computerisation.
+\newblock {\em Retrieved September}, 7:2013, 2013.
+
+\bibitem{david2001skill}
+H~David, Frank Levy, and Richard~J Murnane.
+\newblock The skill content of recent technological change: An empirical
+  exploration.
+\newblock Technical report, National Bureau of Economic Research, 2001.
 
 \bibitem{machin1998}
 John Van~Reenen Stephen~Machin.
@@ -11,6 +23,41 @@ John Bound and George~E Johnson.
 \newblock Changes in the structure of wages during the 1980's: An evaluation of
   alternative explanations.
 \newblock Technical report, National Bureau of Economic Research, 1989.
+
+\bibitem{brynjolfsson2012race}
+Erik Brynjolfsson and Andrew McAfee.
+\newblock {\em Race against the machine: How the digital revolution is
+  accelerating innovation, driving productivity, and irreversibly transforming
+  employment and the economy}.
+\newblock Brynjolfsson and McAfee, 2012.
+
+\bibitem{levy2012new}
+Frank Levy and Richard~J Murnane.
+\newblock {\em The new division of labor: How computers are creating the next
+  job market}.
+\newblock Princeton University Press, 2012.
+
+\bibitem{SOC2010_2000}
+Crosswalks between the 2010 soc and systems used by other federal and
+  international statistical agencies.
+\newblock {http://www.bls.gov/soc/soccrosswalks.htm}.
+\newblock Accessed: 2016-03-15.
+
+\bibitem{SOC2000_OCC}
+Codes for occupation (occ) and soc occupation (occsoc) in the 2000 census
+  samples.
+\newblock {https://usa.ipums.org/usa/volii/census\_occtooccsoc.shtml}.
+\newblock Accessed: 2016-03-15.
+
+\bibitem{OCC2000_1990}
+A crosswalk between the occ1990 and occ variables.
+\newblock {https://usa.ipums.org/usa/volii/occ\_ind.shtml}.
+\newblock Accessed: 2016-03-15.
+
+\bibitem{IPUMS1990}
+Ipums occ1990 codes.
+\newblock {https://usa.ipums.org/usa-action/variables/OCC1990}.
+\newblock Accessed: 2016-03-15.
 
 \bibitem{RW}
 Carl~Edward Rasmussen and Christopher K.~I. Williams.
@@ -31,15 +78,54 @@ Adriano Azevedo-Filho and Ross~D Shachter.
   Uncertainty in artificial intelligence}, pages 28--36. Morgan Kaufmann
   Publishers Inc., 1994.
 
+\bibitem{mckay2000comparison}
+Michael~D McKay, Richard~J Beckman, and William~J Conover.
+\newblock A comparison of three methods for selecting values of input variables
+  in the analysis of output from a computer code.
+\newblock {\em Technometrics}, 42(1):55--61, 2000.
+
 \bibitem{woodbury1950inverting}
 Max~A Woodbury.
 \newblock Inverting modified matrices.
 \newblock {\em Memorandum report}, 42:106, 1950.
 
-\bibitem{frey2013future}
-Carl~Benedikt Frey and Michael~A Osborne.
-\newblock The future of employment: how susceptible are jobs to
-  computerisation.
-\newblock {\em Retrieved September}, 7:2013, 2013.
+\bibitem{PCA_AN}
+Andrew Ng.
+\newblock Principal components analysis.
+\newblock http://cs229.stanford.edu/notes/cs229-notes10.pdf.
+
+\bibitem{jolliffe2002principal}
+Ian Jolliffe.
+\newblock {\em Principal component analysis}.
+\newblock Wiley Online Library, 2002.
+
+\bibitem{golub1965calculating}
+Gene Golub and William Kahan.
+\newblock Calculating the singular values and pseudo-inverse of a matrix.
+\newblock {\em Journal of the Society for Industrial and Applied Mathematics,
+  Series B: Numerical Analysis}, 2(2):205--224, 1965.
+
+\bibitem{kotsiantis2006data}
+SB~Kotsiantis, D~Kanellopoulos, and PE~Pintelas.
+\newblock Data preprocessing for supervised leaning.
+\newblock {\em International Journal of Computer Science}, 1(2):111--117, 2006.
+
+\bibitem{hanley1982meaning}
+James~A Hanley and Barbara~J McNeil.
+\newblock The meaning and use of the area under a receiver operating
+  characteristic (roc) curve.
+\newblock {\em Radiology}, 143(1):29--36, 1982.
+
+\bibitem{bradley1997use}
+Andrew~P Bradley.
+\newblock The use of the area under the roc curve in the evaluation of machine
+  learning algorithms.
+\newblock {\em Pattern recognition}, 30(7):1145--1159, 1997.
+
+\bibitem{minConf}
+M.~Schmidt.
+\newblock minconf: projection methods for optimization with simple constraints
+  in matlab.
+\newblock http://www.cs.ubc.ca/~schmidtm/Software/minConf.html.
 
 \end{thebibliography}

@@ -17,33 +17,31 @@ filename4 = '/Users/muchen/Desktop/Gaussian-Process/code/data_matching.xlsx';
 
 file_ONET = 'ONET.xlsx';
 training_data = xlsread(file_ONET,1);
-X = training_data(:,3:19);
+X = training_data(:,3:11);
 running_data = xlsread(file_ONET,2);
-X_est = running_data(:,3:19);
-X_all = A(:,3:19);
+X_est = running_data(:,3:11);
+X_all = A(:,3:11);
 results_all = A(:, 2);
 results_running = running_data(:,2);
 
-num_dims = 17;
+num_dims = length(X_all(1,:));
 numSamples = 40;
 sig_func = 'probit';
 
  mean_A = mean (X_all);
  num_inst = length(X_all(:,1));
  
- for j = 1:num_dims,
-     X(:,j) = X(:,j) - mean_A(1,j);
-%     var = sum(X(:,j).^2)/num_inst;
-%     X(:,j) = X(:,j)./sqrt(var);
-     
-     X_est(:,j) = X_est(:,j) - mean_A(1,j);
-%     var = sum(X_est(:,j).^2)/num_inst;
- %    X_est(:,j) = X_est(:,j)./sqrt(var);
-     
-     X_all(:,j) = X_all(:,j) - mean_A(1,j);     
-%     var = sum(X_all(:,j).^2)/num_inst;
-%     X_all(:,j) = X_all(:,j)./sqrt(var);
- end
+%   for j = 1:num_dims,
+%       X(:,j) = X(:,j) - mean_A(1,j);
+% %      var = sum(X(:,j).^2)/num_inst;
+% %      X(:,j) = X(:,j)./sqrt(var);
+% %      
+%       X_est(:,j) = X_est(:,j) - mean_A(1,j);
+% %      X_est(:,j) = X_est(:,j)./sqrt(var);
+% %      
+%       X_all(:,j) = X_all(:,j) - mean_A(1,j);     
+% %      X_all(:,j) = X_all(:,j)./sqrt(var);
+%   end
 
 
 class = []; Y_01 = [];
@@ -190,8 +188,8 @@ change_vars = [1, 1, 0, change_weights];
 % numInputPoints = size(X,1);
 % [optimised_params, latent_f_opt, L, W, K] = GPC_paramsOptimisation(params, change_vars, numSamples,num_dims, numInputPoints,X,Y);
 
-for k = 1:1,    
- r = randsample(train_length,0);
+for k = 1:3,    
+ r = randsample(train_length,train_length/2);
  [rest] = setdiff((1:train_length),r,'stable');
  train_X = X(rest,:);
  train_Y = Y(rest,:);
@@ -200,9 +198,10 @@ for k = 1:1,
  test_Y = test_Y';
 
 numInputPoints = size(train_X,1);
-[optimised_params, latent_f_opt, L, W, K] = GPC_paramsOptimisation(params, change_vars, numSamples,num_dims, numInputPoints,train_X,train_Y,sig_func);
-%optimised_params_all = [optimised_params_all; optimised_params];
-%[test_X, K, variance, pi_star, pi_star_ave] = GPC_inference(train_X, train_Y, optimised_params, test_X, latent_f_opt, L, W, num_dims);
+[optimised_params, latent_f_opt, L, W, K,fval] = GPC_paramsOptimisation(params, change_vars, numSamples,num_dims, numInputPoints,train_X,train_Y,sig_func);
+
+optimised_params_all = [optimised_params_all; optimised_params];
+[test_X, K, variance, pi_star, pi_star_ave] = GPC_inference(train_X, train_Y, optimised_params, test_X, latent_f_opt, L, W, num_dims,sig_func);
 
 % for k = 1:train_length/9,
 % if (pi_star_ave(k)>0.5)
@@ -213,13 +212,13 @@ numInputPoints = size(train_X,1);
 % end
 % end
 
-%[X_AUC,Y_AUC,T,AUC] = perfcurve(test_Y,pi_star_ave,'1'); 
-%AUC_all = [AUC_all AUC];
+[X_AUC,Y_AUC,T,AUC] = perfcurve(test_Y,pi_star_ave,'1'); 
+AUC_all = [AUC_all AUC];
 end
-
-%[AUC_max, max_index] = max(AUC_all);
-%AUC_max
-%optimised_params = optimised_params_all(max_index,:);
+fval = -fval
+[AUC_max, max_index] = max(AUC_all);
+AUC_max
+optimised_params = optimised_params_all(max_index,:);
 optimised_params(:)
 %%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%
 % pi_star_ave = pi_star_ave';
