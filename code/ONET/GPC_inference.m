@@ -1,4 +1,4 @@
-function [X_est, K, Variance, pi_star, pi_star_ave] = GPC_inference ( X, Y, params, X_est, latent_f_opt, L, W, num_dims,sig_func)
+function [X_est, K, Variance, pi_star, pi_star_ave,fval] = GPC_inference ( X, Y, params, X_est, latent_f_opt, L, W, num_dims,sig_func)
 
 
 %f_mean = mean(latent_f_opt);
@@ -95,6 +95,16 @@ sqrtW = sqrt(W);
     elseif strcmp(sig_func , 'probit'),
         pi_star = normcdf(fstar);
     end
+
+for i = 1:p,
+    if pi_star_ave(p) < 0.5,
+    Y(p) = -1;
+    else
+    Y(p) = 1;
+    end
+end
+numPoints = size(X_est,1);
+[fval, ~, ~, ~, ~, ~] = GPC_calcLikelihood (params,params,ones(1,20),num_dims, numPoints, X_est, Y,sig_func);
 
 %var = var(:);
 %sigma = sigma(:);

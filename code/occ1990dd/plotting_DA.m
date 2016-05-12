@@ -23,10 +23,11 @@ for i = 1:701,
     end
 end
 
+
 h = histogram(changes)
 xlabel('Change in automatability')
 ylabel('Number of occupations')
-set(gca,'fontsize',15,'fontweight','bold')
+set(gca,'fontsize',12,'fontweight','bold')
  set(gcf,'position',[400,500,400,300])
 
 figure
