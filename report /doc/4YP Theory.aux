@@ -2,6 +2,7 @@
 \providecommand \oddpage@label [2]{}
 \citation{frey2013future}
 \citation{david2001skill}
+\citation{levy2012new}
 \citation{machin1998}
 \citation{bound1989changes}
 \citation{brynjolfsson2012race}
@@ -28,7 +29,7 @@
 \newlabel{cov_y}{{2.4}{6}}
 \@writefile{toc}{\contentsline {subsection}{\numberline {2.1.1}MLE and MAP for Setting Hyperparameters}{6}}
 \providecommand*\caption@xref[2]{\@setref\relax\@undefined{#1}}
-\newlabel{regression_model}{{\caption@xref {regression_model}{ on input line 179}}{7}}
+\newlabel{regression_model}{{\caption@xref {regression_model}{ on input line 233}}{7}}
 \@writefile{lof}{\contentsline {figure}{\numberline {2.1}{\ignorespaces The relation between input ($x$), observational output ($y$), and the latent variable ($f$). \newline  Figure from \cite  {RW}\relax }}{7}}
 \newlabel{pY_X}{{2.5}{7}}
 \newlabel{theta_likelihood}{{2.6}{8}}
@@ -36,7 +37,7 @@
 \@writefile{toc}{\contentsline {subsection}{\numberline {2.1.2}Predictions}{9}}
 \newlabel{predictive_mean_noise_free}{{2.11}{9}}
 \newlabel{predictive_covariance_noise_free}{{2.12}{9}}
-\newlabel{regression_1D_plot}{{\caption@xref {regression_1D_plot}{ on input line 278}}{10}}
+\newlabel{regression_1D_plot}{{\caption@xref {regression_1D_plot}{ on input line 332}}{10}}
 \@writefile{lof}{\contentsline {figure}{\numberline {2.2}{\ignorespaces Example plot of Regression with 1D input and output. Blue points represent the training set. Red region represents the variance of prediction. Note that the variance at the training points is almost reduced to zero as there is little uncertainty at these points (they are actually zero in noise free cases). The further way from training points, the more uncertain predictions become.\relax }}{10}}
 \@writefile{toc}{\contentsline {subsection}{\numberline {2.1.3}Computational Issues}{10}}
 \@writefile{toc}{\contentsline {subsubsection}{Conditioning on Covariance Matrix}{10}}
@@ -44,32 +45,31 @@
 \@writefile{toc}{\contentsline {subsubsection}{Cholesky Decomposition}{11}}
 \@writefile{toc}{\contentsline {subsubsection}{Partial Derivatives of Hyperparameters}{11}}
 \@writefile{toc}{\contentsline {section}{\numberline {2.2}Gaussian Process Classification}{12}}
-\@writefile{toc}{\contentsline {subsection}{\numberline {2.2.1}The 'Squashing' Function}{12}}
+\@writefile{toc}{\contentsline {subsection}{\numberline {2.2.1}The Squashing Function}{12}}
 \newlabel{sigmoid function}{{2.2.1}{12}}
 \newlabel{classification_prediction}{{2.18}{12}}
 \citation{azevedo1994laplace}
 \newlabel{predictive_probability}{{2.19}{13}}
-\@writefile{toc}{\contentsline {subsection}{\numberline {2.2.2}The Laplace Approximation}{13}}
+\@writefile{toc}{\contentsline {subsection}{\numberline {2.2.2}Laplace Approximation}{13}}
 \newlabel{LaplaceApp}{{2.20}{13}}
 \@writefile{toc}{\contentsline {section}{\numberline {2.3}Implementation}{14}}
 \@writefile{toc}{\contentsline {subsection}{\numberline {2.3.1}Optimising the latent variable}{14}}
 \newlabel{optimised_f}{{2.24}{14}}
-\@writefile{lof}{\contentsline {figure}{\numberline {2.3}{\ignorespaces Example plot of latent variable. Blue crosses are training points and red region is its variance. The variance now is never going to be zero because the latent function value is not told directly. While in noise free regression, the exact value of output at training points is told.\relax }}{15}}
+\@writefile{lof}{\contentsline {figure}{\numberline {2.3}{\ignorespaces Example plot of latent variable. Blue crosses are training points and red region is its variance. The variance now is never going to be zero because the latent function value is not observed directly. While in noise free regression, the exact value of output at training points is told.\relax }}{15}}
 \@writefile{toc}{\contentsline {subsection}{\numberline {2.3.2}Maximising the Objective Function}{15}}
 \citation{mckay2000comparison}
 \newlabel{eq:marg_likelihood_classification}{{2.26}{16}}
 \@writefile{toc}{\contentsline {subsubsection}{Sampling Methods for Hyperparameters}{16}}
 \@writefile{lof}{\contentsline {figure}{\numberline {2.4}{\ignorespaces A simple example of 2-dimensional uniform sampling with 4 sampling intervals in each dimension.\relax }}{17}}
-\@writefile{lof}{\contentsline {figure}{\numberline {2.5}{\ignorespaces Comparison between Latin Hypercube sapling and random sampling. Although Latin hypercube sampling may not represent the most variable overall (which can be improved by Orthogonal sampling), it gives a pretty good variability in each dimension. Random sampling does not secure any variability. \relax }}{18}}
+\@writefile{lof}{\contentsline {figure}{\numberline {2.5}{\ignorespaces Comparison between Latin Hypercube sampling and random sampling. Although Latin hypercube sampling may not represent the most variation overall ( can be improved by Orthogonal sampling), it gives a pretty good variability in each dimension. Random sampling does not secure any variability. \relax }}{18}}
 \@writefile{toc}{\contentsline {subsubsection}{Derivatives of Hyperparameters}{18}}
-\newlabel{eq:al1}{{2.28}{18}}
-\newlabel{eq:al2}{{2.29}{18}}
 \citation{woodbury1950inverting}
+\newlabel{eq:al1}{{2.28}{19}}
+\newlabel{eq:al2}{{2.29}{19}}
 \@writefile{toc}{\contentsline {subsection}{\numberline {2.3.3}Predictive Probability}{19}}
 \newlabel{predictive_mean_classification}{{2.30}{19}}
 \newlabel{predictive_var_classification}{{2.31}{19}}
 \@writefile{lof}{\contentsline {figure}{\numberline {2.6}{\ignorespaces (a) the MAP prediction. (b) the averaged probability prediction. Blue crosses are training points (class label 1 and -1 but marked as 1 and 0 for better display). The MAP prediction goes to the extremes quicker while the averaged probability is more moderate and tend to be affected by adjacent points\relax }}{20}}
-\citation{PCA_AN}
 \citation{jolliffe2002principal}
 \citation{golub1965calculating}
 \citation{kotsiantis2006data}
@@ -82,83 +82,84 @@
 \@writefile{lof}{\addvspace {10\p@ }}
 \@writefile{lot}{\addvspace {10\p@ }}
 \newlabel{GP_for_employment}{{3}{23}}
-\@writefile{toc}{\contentsline {section}{\numberline {3.1}Performance Measurement}{23}}
+\@writefile{lof}{\contentsline {figure}{\numberline {3.1}{\ignorespaces A flow chart for how predictions are made\relax }}{23}}
+\newlabel{fig:flow}{{3.1}{23}}
 \citation{hanley1982meaning}
 \citation{bradley1997use}
-\@writefile{lof}{\contentsline {figure}{\numberline {3.1}{\ignorespaces A flow chart for how predictions are made\relax }}{24}}
-\newlabel{fig:flow}{{3.1}{24}}
-\@writefile{lof}{\contentsline {figure}{\numberline {3.2}{\ignorespaces (a) When lengthscale get small, it tries to fit the noise-corrupted details (b) If length-scale is contrained to be large, it concenrates on large scale smoothness (c) An appropriate model in this case should pay attention to detail but not forgetting the overall smoothness. Green curve is the original function from which noisy samples (blue corsses) are generated. Black curve is the resulting GP model.\relax }}{25}}
+\@writefile{toc}{\contentsline {section}{\numberline {3.1}Performance Measurement}{24}}
+\@writefile{lof}{\contentsline {figure}{\numberline {3.2}{\ignorespaces (a) When lengthscale get small, it tries to fit the noise-corrupted details (b) If length-scale is constrained to be large, it concentrates on large scale smoothness (c) An appropriate model in this case should pay attention to detail but not forgetting the overall smoothness. Green curve is the original function from which noisy samples (blue crosses) are generated. Black curve is the resulting GP model.\relax }}{25}}
 \newlabel{fig:overfitting}{{3.2}{25}}
 \citation{frey2013future}
 \@writefile{lof}{\contentsline {figure}{\numberline {3.3}{\ignorespaces A typical ROC curve plotted with 35 training instances. \relax }}{26}}
 \newlabel{fig:ROC}{{3.3}{26}}
 \@writefile{toc}{\contentsline {section}{\numberline {3.2}The 2010 data}{26}}
 \citation{minConf}
-\citation{brynjolfsson2012race}
-\@writefile{lof}{\contentsline {figure}{\numberline {3.4}{\ignorespaces The occupational category as a function of probability of computerisation. Each point represents an occupation. The value for each category is compued by adding up all variables within that category but the input for the algorithm is still nine variables.\relax }}{28}}
+\@writefile{lot}{\contentsline {table}{\numberline {3.1}{\ignorespaces Performance comparison between probit function and logistic function\relax }}{27}}
+\newlabel{tab:sigmoid}{{3.1}{27}}
+\@writefile{lof}{\contentsline {figure}{\numberline {3.4}{\ignorespaces The occupational category as a function of probability of computerisation. Each point represents an occupation. The value for each category is computed by adding up all variables within that category but the input for the algorithm is still nine variables.\relax }}{28}}
 \newlabel{fig:category2010}{{3.4}{28}}
+\citation{brynjolfsson2012race}
 \citation{david2001skill}
 \citation{SOC2010_2000}
 \citation{SOC2000_OCC}
 \citation{OCC2000_1990}
-\citation{PCA_AN}
+\@writefile{toc}{\contentsline {section}{\numberline {3.3}The 1980 data}{30}}
 \citation{david2001skill}
-\@writefile{toc}{\contentsline {section}{\numberline {3.3}The 1980 data}{29}}
-\@writefile{lot}{\contentsline {table}{\numberline {3.1}{\ignorespaces Performance with and without PCA\relax }}{30}}
-\newlabel{tab:PCA}{{3.1}{30}}
-\@writefile{lof}{\contentsline {figure}{\numberline {3.5}{\ignorespaces The task measurements in 1980 vs.  probability of computerisation.\relax }}{31}}
-\newlabel{fig:1980}{{3.5}{31}}
+\@writefile{lot}{\contentsline {table}{\numberline {3.2}{\ignorespaces Performance with and without PCA\relax }}{31}}
+\newlabel{tab:PCA}{{3.2}{31}}
+\@writefile{lof}{\contentsline {figure}{\numberline {3.5}{\ignorespaces The task measurements in 1980 vs.  probability of computerisation.\relax }}{32}}
+\newlabel{fig:1980}{{3.5}{32}}
 \citation{david2001skill}
 \citation{IPUMS1990}
-\@writefile{lof}{\contentsline {figure}{\numberline {3.6}{\ignorespaces Averaged probability of computerisation vs.  categorial task measurements in 1980.\relax }}{32}}
-\newlabel{fig:1980cat}{{3.6}{32}}
+\@writefile{lof}{\contentsline {figure}{\numberline {3.6}{\ignorespaces Averaged probability of computerisation vs.  categorical task measurements in 1980.\relax }}{33}}
+\newlabel{fig:1980cat}{{3.6}{33}}
 \citation{brynjolfsson2012race}
-\@writefile{lof}{\contentsline {figure}{\numberline {3.7}{\ignorespaces Change in employment rate from 1980 to 2010 vs probability of computerisation in 1980. Each point represents an occupation \relax }}{33}}
-\newlabel{fig:labor_change}{{3.7}{33}}
-\@writefile{lot}{\contentsline {table}{\numberline {3.2}{\ignorespaces Mean and standard deviation of changes in employment rate  based on each level of automatability\relax }}{33}}
-\newlabel{tab:labor_change}{{3.2}{33}}
-\@writefile{toc}{\contentsline {section}{\numberline {3.4}Changes in probability from 1980 to 2010}{34}}
-\@writefile{lof}{\contentsline {figure}{\numberline {3.8}{\ignorespaces Change in probability from 1980 to 2010 histogram. \relax }}{34}}
-\newlabel{fig:hist}{{3.8}{34}}
-\@writefile{toc}{\contentsline {chapter}{\numberline {4}Conclusion}{36}}
+\@writefile{lof}{\contentsline {figure}{\numberline {3.7}{\ignorespaces Change in employment rate from 1980 to 2010 vs probability of computerisation in 1980. Each point represents an occupation \relax }}{34}}
+\newlabel{fig:labor_change}{{3.7}{34}}
+\@writefile{lot}{\contentsline {table}{\numberline {3.3}{\ignorespaces Mean and standard deviation of changes in employment rate  based on each level of automatability\relax }}{35}}
+\newlabel{tab:labor_change}{{3.3}{35}}
+\@writefile{toc}{\contentsline {section}{\numberline {3.4}Changes in probability from 1980 to 2010}{35}}
+\@writefile{lof}{\contentsline {figure}{\numberline {3.8}{\ignorespaces Change in probability from 1980 to 2010 histogram. \relax }}{36}}
+\newlabel{fig:hist}{{3.8}{36}}
+\@writefile{toc}{\contentsline {chapter}{\numberline {4}Conclusion}{37}}
 \@writefile{lof}{\addvspace {10\p@ }}
 \@writefile{lot}{\addvspace {10\p@ }}
 \citation{levy2012new}
-\@writefile{toc}{\contentsline {section}{\numberline {4.1}Limitations}{37}}
-\bibstyle{unsrt}
+\@writefile{toc}{\contentsline {section}{\numberline {4.1}Limitations}{38}}
+\bibstyle{apalike}
 \bibdata{4YP}
-\bibcite{frey2013future}{1}
-\bibcite{david2001skill}{2}
-\bibcite{machin1998}{3}
-\bibcite{bound1989changes}{4}
-\bibcite{brynjolfsson2012race}{5}
-\bibcite{levy2012new}{6}
-\bibcite{SOC2010_2000}{7}
-\bibcite{SOC2000_OCC}{8}
-\bibcite{OCC2000_1990}{9}
-\bibcite{IPUMS1990}{10}
-\bibcite{RW}{11}
-\bibcite{marelli2015distributed}{12}
-\bibcite{azevedo1994laplace}{13}
-\bibcite{mckay2000comparison}{14}
-\bibcite{woodbury1950inverting}{15}
-\bibcite{PCA_AN}{16}
-\bibcite{jolliffe2002principal}{17}
-\bibcite{golub1965calculating}{18}
-\bibcite{kotsiantis2006data}{19}
-\bibcite{hanley1982meaning}{20}
-\bibcite{bradley1997use}{21}
-\bibcite{minConf}{22}
-\@writefile{toc}{\contentsline {chapter}{\numberline {A}Probabilities of computerisation}{42}}
+\bibcite{IPUMS1990}{IPU, 1990}
+\bibcite{SOC2000_OCC}{SOC, 2000}
+\bibcite{OCC2000_1990}{OCC, 2000}
+\bibcite{SOC2010_2000}{SOC, 2010}
+\bibcite{azevedo1994laplace}{Azevedo-Filho and Shachter, 1994}
+\bibcite{bound1989changes}{Bound and Johnson, 1989}
+\bibcite{bradley1997use}{Bradley, 1997}
+\bibcite{brynjolfsson2012race}{Brynjolfsson and McAfee, 2012}
+\bibcite{david2001skill}{David et\nobreakspace  {}al., 2001}
+\bibcite{frey2013future}{Frey and Osborne, 2013}
+\bibcite{golub1965calculating}{Golub and Kahan, 1965}
+\bibcite{hanley1982meaning}{Hanley and McNeil, 1982}
+\bibcite{jolliffe2002principal}{Jolliffe, 2002}
+\bibcite{kotsiantis2006data}{Kotsiantis et\nobreakspace  {}al., 2006}
+\bibcite{levy2012new}{Levy and Murnane, 2012}
+\bibcite{marelli2015distributed}{Marelli and Fu, 2015}
+\bibcite{mckay2000comparison}{McKay et\nobreakspace  {}al., 2000}
+\bibcite{PCA_AN}{Ng, nd}
+\bibcite{RW}{Rasmussen and Williams, 2006}
+\bibcite{minConf}{Schmidt, 2008}
+\bibcite{machin1998}{Stephen\nobreakspace  {}Machin, 1998}
+\bibcite{woodbury1950inverting}{Woodbury, 1950}
+\@writefile{toc}{\contentsline {chapter}{\numberline {A}Probabilities of computerisation}{43}}
 \@writefile{lof}{\addvspace {10\p@ }}
 \@writefile{lot}{\addvspace {10\p@ }}
-\newlabel{App:results_all}{{A}{42}}
+\newlabel{App:results_all}{{A}{43}}
 \gdef \LT@i {\LT@entry 
     {1}{216.88365pt}\LT@entry 
-    {2}{25.65845pt}\LT@entry 
+    {1}{25.65845pt}\LT@entry 
     {1}{25.65845pt}\LT@entry 
     {1}{57.53279pt}\LT@entry 
     {1}{57.53279pt}\LT@entry 
-    {3}{71.19124pt}}
-\@writefile{lot}{\contentsline {table}{\numberline {A.1}{\ignorespaces Probability of computerisation in 1980 and 2010 (some 1980 reaults are missing because they can not find correspondences using crosswalk files).}}{47}}
-\newlabel{tab:myfirstlongtable}{{A.1}{47}}
+    {1}{71.19124pt}}
+\@writefile{lot}{\contentsline {table}{\numberline {A.1}{\ignorespaces Probability of computerisation in 1980 and 2010  (some 1980 reaults are missing for being not able to find correspondences using crosswalk files).}}{48}}
+\newlabel{tab:myfirstlongtable}{{A.1}{48}}

@@ -1,6 +1,6 @@
 \documentclass[11pt]{report}
-\title{The Future of Work: \\ Machine Learning and Employment}
-\author{Mu Chen}
+
+
 
 \usepackage[margin=1.1in]{geometry}
 
@@ -29,10 +29,11 @@
 \usepackage{multirow}
 \usepackage{booktabs}
 \usepackage[justification=centering]{caption}
+\usepackage{pdfpages}
 
 \renewcommand{\familydefault}{\sfdefault}
 
-\renewcommand{\bibname}{References}
+%\renewcommand{\bibname}{References}
 \newcolumntype{?}{!{\vrule width 1pt}}
 
 \makeatletter
@@ -66,15 +67,68 @@
 
 
 \begin{document}
+
+\begin{titlepage}
+
+\newcommand{\HRule}{\rule{\linewidth}{0.5mm}} % Defines a new command for the horizontal lines, change thickness here
+
+\center % Center everything on the page
+ 
+
+%----------------------------------------------------------------------------------------
+%	TITLE SECTION
+%----------------------------------------------------------------------------------------
+
+\HRule \\[0.4cm]
+{ \huge \bfseries The Future of Work -- \\ Machine Learning and Employment}\\[0.4cm] % Title of your document
+\HRule \\[1.5cm]
+
+%----------------------------------------------------------------------------------------
+%	HEADING SECTIONS
+%----------------------------------------------------------------------------------------
+
+%\textsc{\LARGE University of Oxford}\\[1.5cm] % Name of your university/college
+\includegraphics[scale = 0.2]{logo.jpg}\\[1cm] % Include a department/university logo - this will require the graphicx package
+ 
+%\textsc{\Large St-Hugh's College}\\[0.5cm] % Major heading such as course name
+ 
+%----------------------------------------------------------------------------------------
+%	AUTHOR SECTION
+%----------------------------------------------------------------------------------------
+
+
+% If you don't want a supervisor, uncomment the two lines below and remove the section above
+\Large \textbf{Mu Chen}\\ % Your name
+\Large St Hugh's College\\[3cm]
+
+\Large Supervisor: Michael Osborne\\
+\Large Department of Engineering Science\\
+\Large University of Oxford\\[1cm]
+
+%----------------------------------------------------------------------------------------
+%	DATE SECTION
+%----------------------------------------------------------------------------------------
+
+{\large Trinity Term 2016}\\[3cm] % Date, change the \today to a set date if you want to be precise
+
+
+%----------------------------------------------------------------------------------------
+
+\vfill % Fill the rest of the page with whitespace
+
+\end{titlepage}
+\newpage
+\includepdf[pages=-]{Declaration.pdf}
+
 \pagenumbering{roman}
 \newpage
-\maketitle
+%\maketitle
 \section*{Abstract}
-The goal of the project is to build upon the work of Frey \& Osborne\cite{frey2013future} about the future of employment and further investigates how susceptibilities of jobs has affected employment since 1980s.  Machine learning techniques are applied to two sets of data, each containing a list of job descriptors from 1977 and 2010 respectively, to estimate the probability of computerisation for every occupation in each time period. These estimations are then examined on labor force market changes. The result proves the conclusion of many others work\cite{david2001skill}, from a probability point of view, that computer capital is substitutive for jobs involving routine tasks -- tasks following specific rules, but not a threaten to jobs involving non-routine tasks in general, although there are indications that some non-routine jobs such as non-routine manual jobs are no longer safe.
+The goal of the project is to build upon the work of \cite{frey2013future} about the future of employment and further investigates how susceptibilities of jobs has affected employment since 1980s.  Machine learning techniques are applied to two sets of data, each containing a list of job descriptors from 1977 and 2010 respectively, to estimate the probability of computerisation for every occupation in each time period. These estimations are then examined on labor force market changes. The result proves the conclusion of many others work\cite{david2001skill}\cite{levy2012new}, from a probability point of view, that computer capital is substitutable for workers involving routine tasks -- tasks following programmable rules, but not a threaten to workers in non-routine jobs in general, although there are indications that some non-routine jobs such as non-routine manual jobs are no longer safe.
 
 \newpage
 \section*{Acknowledgement}
-First I would like to thank my supervisor, Michael Osborne, for his generous support throughout this project. His patient advices as well as his brilliant lectures have all helped me understanding the subject and finishing the project. I would also like to thank Carl Frey from Oxford Martin School for his invaluable advices on the use of employment data that forms the core data source of my experiments. Finally, I would like to acknowledge the reference of GP regression code written by Mark Ebden, where I started developing my own GP program. 
+First I would like to thank my supervisor, Michael Osborne, for his generous support throughout this project. His invaluable advices and his brilliant lectures have all helped me understand the subject and finish the project. I would also like to thank Carl Frey from Oxford Martin School for his essential information on employment data that forms the core of my experiment data. Finally, I would like to acknowledge the reference of GP regression code written by Mark Ebden, where I started developing my own GP program. 
 
 \newpage 
 \rhead{Table of Contents}
@@ -96,9 +150,9 @@ The question of how technology could influence employment has been a popular iss
 
 Many works have been done to reveal the impact of technology on labor force. Brynjolfsson and McAfee\cite{brynjolfsson2012race} believed that technology has contributed to persistent high employment rate. They observed that, after the Great Recession\footnote{A period of economic decline observed in world markets during the late 2000s}, when companies are expected to take in more workers, they bought more computers. The only reason behind is that computer capital became cheaper than human worker. 
 
-Although it is commonly believed that there are jobs in which human is not replaceable\cite{levy2012new}, there are large amount of jobs that have already been automated. Past works have proven that computers are substitutive for jobs mainly involving routine tasks\cite{david2001skill}. However, with recent development in artificial intelligence such as pattern recognition, some non-routine tasks, especially non-routine manual tasks are no longer invincible.  It is not impossible that other non-routine tasks would be manageable by computers in the future.
+Although it is commonly believed that there are jobs in which humans are not replaceable\cite{levy2012new}, there are large amount of jobs that have already been automated. Past works have proven that computers are substitutive for jobs mainly involving routine tasks\cite{david2001skill}. However, with recent development in artificial intelligence such as pattern recognition, some non-routine tasks, especially non-routine manual tasks are no longer invincible.  It is not impossible that other non-routine tasks would be manageable by computers in the future.
 
-In this project, GP is run on two sets of data, one includes variables related to 2010 occupations, the other includes tasks performed for each occupation in 1977\cite{david2001skill}. The training set of 2010 occupations are hand-labeled data from the workof Frey \& Osborne\cite{frey2013future}. The same labels are transferred to 1990 occupations through official crosswalk files from IPUMS\cite{SOC2010_2000},\cite{SOC2000_OCC}\cite{OCC2000_1990}. These two sets of data are run with GP classification MATLAB program separately. The results are then compared with each other as well as with historical labor force data\cite{IPUMS1990}. 
+In this project, a GP is run on two sets of data, one includes variables related to 2010 occupations, the other includes tasks performed for each occupation in 1977\cite{david2001skill}. The training set of 2010 occupations are hand-labeled data from \cite{frey2013future}. The same labels are transferred to 1990 occupations through official crosswalk files from IPUMS\cite{SOC2010_2000},\cite{SOC2000_OCC}\cite{OCC2000_1990}. These two sets of data are run with GP classification MATLAB program separately. The results are then compared with each other as well as with historical labor force data\cite{IPUMS1990}. 
 
 The following chapters will present the details of how machine learning is used for studying the relation between technology development and employment. Chapter  \ref{GP} will introduce the basics of the Gaussian process and the implementation details of Gaussian process classification. Then Chapter \ref{GP_for_employment} will be talking about how employment data sets from 2010 and 1980  are used in GP and what conclusions could we make from the results. Finally Appendix \ref{App:results_all} includes some numerical results of the project.
 
@@ -109,9 +163,9 @@ The following chapters will present the details of how machine learning is used 
 \chapter{Gaussian Process}
 \label{GP}
 \rhead{Gaussian Process}
-Gaussian Process(GP) is a modelling method in which all variables are assumed to follow normal distribution. Any finite combination of input spaces also has a joint Gaussian distribution. Thus the distribution of a Gaussian Process model can be seen as the infinite-dimensional generalization of multivariate normal distribution. 
+Gaussian Process(GP) is a modelling method in which all variables are assumed to follow normal distribution. Any finite combination of input spaces also has a joint Gaussian distribution. Thus the distribution of a Gaussian Process model can be seen as the infinite-dimensional generalization of the multivariate normal distribution. 
 
-Gaussian Process has several advantages over other models. First, its non-parametric modelling process gives the maximum flexibility. It is not restricted by any pre-defined parameters. Second, Gaussian Process is particularly useful for small data sets because the prescence of hyper-parameters gives it characteristics you want (such as smoothness and periodicity), at the same time keeping a fine fit to the data.  
+A Gaussian Process has several advantages over other models. First, its non-parametric modelling process gives it flexibility. It is not restricted by the expressivity of a set of parameters of fixed size. Second, a Gaussian Process is particularly useful for small data sets because the priors in this family can give characteristics you want (such as smoothness and periodicity), at the same time keeping a fine fit to the data.  
 
 By definition, a Gaussian Process $f(x)$ is specified by a mean function and a covariance function, denoted as  
 
@@ -135,11 +189,11 @@ k(x_2,x_1) & k(x_2,x_2) & \cdots & k(x_2,x_n)\\
 \vdots & \vdots & \ddots & \vdots\\
 K(x_n,x_1) & k(x_n,x_2) & \cdots & k(x_n,x_n)\\
 
-\end{array}\right]
+\end{array}\right].
 \end{equation}
 
 \subsubsection{Mean Function}
-The prior mean function $\mu(x)$ describes the beliefs in output y(x) before any observations are made. The most popular choices of $\mu$ includes 0 and other constants. More complicated mean functions can be defined by using certain parameters based on domain knowledge. However, one should always be careful in selecting the mean function since it is what our inference is extrapolated from.   
+The prior mean function $\mu(x)$ describes the beliefs in output y(x) before any observations are made. The most popular choices of $\mu$ includes 0 and other constants. More complicated mean functions can be defined by using certain parameters based on domain knowledge. However, one should always be careful in selecting the mean function since it is what specifies extrapolation behaviour.   
 
 \subsubsection{Covariance Function}
 Many characteristics such as smoothness, stationarity, and periodicity can be integrated in covariance function. It describes how individual observations are related to each other. In reverse, learning in Gaussian Process also defines the properties of covariance function, giving us the model that can be used for upcoming predictions.   
@@ -148,7 +202,7 @@ One common choice is the squared exponential covariance function
 \[k(x,x\prime) = \sigma_f^2\operatorname{exp}\left[-\frac{(x-x\prime)^2}{2l^2}\right]\]
 where $l$ is the lengthscale representing how far a certain training point could affect the predictions. It is suitable for smooth data. One thing to notice is that the $k(x,x\prime)$ is actually the covariance between $y$ and $y\prime$, corresponding to the output of $x$ and $x\prime$ respectively. Other covariance functions such as rational quadratic function can be useful for data that is smooth over a range of length scales.
 
-Matérn class of covariance functions is another important branch of covariance functions. They take the form of 
+The Matérn class of covariance functions is another important branch of covariance functions. They take the form of 
 \[K_{Matérn}(x,x\prime) = \lambda^2 \frac{2^{1-\nu}}{\Gamma(\nu)}\left(\frac{\sqrt{2\nu} d(x,x\prime)}{l}\right)^\nu K_\nu \left(\frac{\sqrt{2\nu} d(x,x\prime)}{l}\right)\]
 where $d(x,x\prime)$ is the distance between $x$ and $x\prime$. This type of covariance is normally used for functions of varying smoothness. 
 
@@ -158,13 +212,13 @@ where $\rho$ determines the period and $\omega$ gives the roughness.
 
 Covariance functions can be combined to give multi-character correlations. For example, if we know that it requires both periodicity and smoothness in the distribution, the multiplication of squared exponential function and periodic function can be used. If the prior information is that either periodicity or smoothness exists, the addition of the above two functions suits better. Similar techniques can be applied to distributions that are known to be the sum of independent functions or the product of independent functions.
 
-One thing to notice is that most of the covariance functions involves computing the distance between input points. This distance could either simply be the euclidean distance $d_E(x,x\prime) = \sqrt{\sum\limits_{i=1}^n(x_i - x_i\prime)^2}$ or the weighted distance defined by $d_w(x,x\prime) = \sqrt{\sum\limits_{i=1}^n\frac{(x_i - x_i\prime)^2}{w_i^2}}$
+One thing to notice is that most of the covariance functions involves computing the distance between input points. This distance could either simply be the euclidean distance $d_E(x,x\prime) = \sqrt{\sum\limits_{i=1}^n(x_i - x_i\prime)^2}$ or the weighted distance defined by $d_w(x,x\prime) = \sqrt{\sum\limits_{i=1}^n\frac{(x_i - x_i\prime)^2}{w_i^2}}$.
 
 
 \section{Gaussian Process Regression}
 \rhead{Regression}
 
-GP Regression by its name is the process of finding a model to fit a data set using Gaussian Process. In practice, it is often the case that the output data we collected are noise corrupted. eg. $y = f(x)+ \epsilon$. If we assume the noise is Gaussian with variance $\sigma_n^2$ and independent in each observation, covariance between observations then becomes
+GP Regression by its name is the process of finding a model to fit a data set using a Gaussian Process. In practice, it is often the case that the output data we collected are noise corrupted. eg. $y = f(x)+ \epsilon$. If we assume the noise $\epsilon$ is Gaussian with variance $\sigma_n^2$ and independent in each observation, covariance between observations then becomes
 
 \begin{equation}
 \label{cov_y}
@@ -184,7 +238,7 @@ where $\delta$ is the Kronecker delta function which becomes 1 when $x = x\prime
 \subsection{MLE and MAP for Setting Hyperparameters}
 Although Gaussian Process is non-parametric, we still need to find the hyperparameters which define the mean and covariance functions. In fact, the objective of finding hyperparameters other than the parameters for model itself gives us more freedom in defining the distribution function. 
 
-According to Baye's rule,
+According to Bayes' rule,
 
 \[\mbox{posterior} = \frac{\mbox{likelihood}\times \mbox{prior}}{\mbox{marginal likelihood}}\]
 
@@ -205,7 +259,7 @@ Note that in equation (\ref{pY_X}), $\theta$ is marginalised out therefore $p(y|
 
 \begin{equation}
 \label{theta_likelihood}
-p(y|X,\theta) = \int{p(y|f,X,\theta)p(f|X,\theta)}df
+p(y|X,\theta) = \int{p(y|f,X,\theta)p(f|X,\theta)}df.
 \end{equation}
 
 In Gaussian Process model we assume that $p(f|X,\theta)$ is a Gaussian with mean 0 and variance $K$. A multi-variate Gaussian probability density function can be written as 
@@ -282,12 +336,12 @@ and the noisy version,
 \subsection{Computational Issues}
 
 \subsubsection{Conditioning on Covariance Matrix}
-Covariance matrix $K$ has to be positive semi-definite for its consequencial steps to be numerically stable. However, when the input data is so closed to each other compared to the length scale used, adjacent rows in $K$ might become the same under limited significant figures, making the matrix not full rank anymore.
+Covariance matrix $K$ has to be positive semi-definite for its consequential steps to be numerically stable. However, when the input data is so closed to each other compared to the length scale used, adjacent rows in $K$ might become the same under limited significant figures, making the matrix not full rank anymore.
 
 This problem is avoided in regression problems by adding noise. While in classification problems that we are going to talk about later, artificial noise, also called jitters, has to be added. The amount of jitters needed differs by data, and user is required to adjust its size until $K$ becomes positive definite.
 
 \subsubsection{Cholesky Decomposition}
-For large data sets, Gaussian Process can be very slow. The computation on large covariance matrix makes it highly time consuming. The most expensive computation is the inversion of $K$. Cholesky decomposition is one way to tackle this problem. It decomposes a positive definite matrix into product of two triangular matrices
+For large data sets, a Gaussian Process can be very slow. The computation on large covariance matrix makes it highly time consuming. The most expensive computation is the inversion of $K$. Cholesky decomposition is one way to tackle this problem. It decomposes a positive definite matrix into the product of two triangular matrices
 
 \begin{equation}
 K = LL^T = U^TU
@@ -296,14 +350,14 @@ K = LL^T = U^TU
 where $L$ is a lower triangular matrix and $U$ is an upper triangular matrix. The inverse of $K$ can simply be computed by
 
 \begin{equation}
-K^{-1} = L^{-T}L^{-1} = U^{-1}U^{-T}
+K^{-1} = L^{-T}L^{-1} = U^{-1}U^{-T}.
 \end{equation}
 
 It is much faster to compute the inverse of a triangular matrix, giving a reduction in computation complexity from $\mathcal{O}(n^3)$ to $\mathcal{O}(\frac{1}{3}n^3)$\cite{marelli2015distributed}. In addition, matrix inversion based on cholesky decomposition is more numerically stable.  
 
 
 \subsubsection{Partial Derivatives of Hyperparameters}
-To optimise the hyperparameters using Newton's method, we need to compute the gradients of log likelihood of $\theta$ wrt. the hyperparameters $\theta_i$, given by 
+To optimise the hyperparameters using Newton's method, we need to compute the gradients of log likelihood of $\theta$ w.r.t. the hyperparameters $\theta_i$, given by 
  
 \begin{equation}
 \begin{split}
@@ -311,7 +365,7 @@ To optimise the hyperparameters using Newton's method, we need to compute the gr
 \end{split}
 \end{equation}
 
-One thing to notice is that many of the parameters, such as lengthscale and frequency, are always positive. Therefore it is more convenient to optimise over their logrithms other than themselves. e.g $\theta = \operatorname{log}\theta$ 
+One thing to notice is that many of the parameters, such as lengthscale and frequency, are always positive. Therefore it is more convenient to optimise over their logarithms other than themselves. e.g $\theta = \operatorname{log}\theta$. 
 
 
 
@@ -326,16 +380,16 @@ One thing to notice is that many of the parameters, such as lengthscale and freq
 Gaussian Process classification can be simply derived from GP regression except for the fact that outputs are discrete numbers representing class labels instead of continuous numbers in regression. Typically class labels are 1 and -1 for binary class problems. However, we do get a continuous intermediate function before the final label is decided. This is the latent variable on which regression is applied. Then the result of regression will be 'squashed' into range [0,1] to give the probability of a certain class.
 
 
-\subsection{The 'Squashing' Function}
+\subsection{The Squashing Function}
 \label{sigmoid function}
-The 'squashing' function can be any sigmoid function. Two typical sigmoid functions are logistic function $\lambda (f) = 1/(1 + \operatorname{exp}(-y_if_i))$ and cumulative Gaussian function $\Phi (f) $. Inference is hence divided into two steps. First is to compute  the distribution of the prediction latent variable $f_*$ in terms of previous observations 
+The squashing function can be any sigmoid function. Two typical sigmoid functions are logistic function $\lambda (f) = 1/(1 + \operatorname{exp}(-y_if_i))$ and cumulative Gaussian function $\Phi (f) $. Inference is hence divided into two steps. First is to compute  the distribution of the prediction latent variable $f_*$ in terms of previous observations 
 
 \begin{equation}
 \label{classification_prediction}
 p(\boldsymbol f_*|\boldsymbol X,\boldsymbol y,\boldsymbol x_*) = \int p(\boldsymbol f_*|\boldsymbol X,\boldsymbol x_*,\boldsymbol f)p(\boldsymbol f|\boldsymbol X,\boldsymbol y)\ d\boldsymbol f
 \end{equation}
 
-where \(p(\boldsymbol f|\boldsymbol X,\boldsymbol y) = {p(\boldsymbol y|\boldsymbol f)p(\boldsymbol f|\boldsymbol X)}/{p(\boldsymbol y|\boldsymbol X)}\) is the posterior of latent variables $\boldsymbol f$, which is estimated by MAP with respect to hyperpamaters($l$ and $\sigma_f$).
+where \(p(\boldsymbol f|\boldsymbol X,\boldsymbol y) = {p(\boldsymbol y|\boldsymbol f)p(\boldsymbol f|\boldsymbol X)}/{p(\boldsymbol y|\boldsymbol X)}\) is the posterior of latent variables $\boldsymbol f$, which is estimated by MAP with respect to hyperparameters($l$ and $\sigma_f$).
 
 Then the probabilistic prediction is estimated by substitute the latent f into sigmoid function and average over 
 
@@ -345,9 +399,9 @@ Then the probabilistic prediction is estimated by substitute the latent f into s
 \end{equation}
 
 
-\subsection{The Laplace Approximation}
+\subsection{Laplace Approximation}
 
-In the case of regression (equation \ref{theta_likelihood}), we assumed that both the likelihood $p(y|f)$ and the posterior over latent variable $p(f|X,\theta)$ are Gaussian. The integral for finding $p(y|X,\theta)$ and the prediction can be computed analytically. However, in classification, the non-Gaussian likelihood and the posterior of latent function make the integral (equation (\ref{classification_prediction})) not analytically tractable. Laplace's approximation can be used to approximate these two terms by doing a second order Taylor 		expansion around its maximum point. 
+In the case of regression (equation \ref{theta_likelihood}), we assumed that both the likelihood $p(y|f)$ and the posterior over latent variable $p(f|X,\theta)$ are Gaussian. The integral for finding $p(y|X,\theta)$ and the prediction can be computed analytically. However, in classification, the non-Gaussian likelihood and the posterior of latent function make the integral (equation (\ref{classification_prediction})) not analytically tractable. Laplace's approximation can be used to approximate these two terms by doing a second order Taylor expansion of the logarithm around its maximum point. 
 
 The Gaussian approximation of the posterior of $f$ can be obtained by:
 
@@ -356,7 +410,7 @@ The Gaussian approximation of the posterior of $f$ can be obtained by:
 q(f|X,y) = \mathcal{N}(f|\hat{f},A^{-1}) \propto \operatorname{exp}(-\frac{1}{2}(f-\hat{f})^T A(f-\hat{f})) \,\sim\, p(f|X,y)
 \end{equation}
 
-where $\hat{f} = \operatorname{argmax_f} p(f|X,y)$ and $A = -\bigtriangledown\bigtriangledown \operatorname{log}p(f|X,y)|_{f=\hat{f}}$ is the hessian of negative log posterior.
+where $\hat{f} = \operatorname{argmax_f} p(f|X,y)$ and $A = -\bigtriangledown\bigtriangledown \operatorname{log}p(f|X,y)|_{f=\hat{f}}$ is the Hessian of negative log posterior.
 
 
 The reason we choose Laplace's approximation here is that it is more likely to give a better approximation than MLE or MAP\cite{azevedo1994laplace}. Although it may still be inappropriate for the true shape of the data: the peak can be much sharper or flatter than what the approximation described. 
@@ -371,12 +425,12 @@ The reason we choose Laplace's approximation here is that it is more likely to g
 %%The project is mainly focused on classification problem, where the input is the measurements of each job and the output is the class label indicating whether the job would be automated or not.
 
 \subsection{Optimising the latent variable}
-By Baye's rule
+By Bayes' rule
 \[
 p(\boldsymbol f|\boldsymbol X,\boldsymbol y) = {p(\boldsymbol y|\boldsymbol f)p(\boldsymbol f|\boldsymbol X)}/{p(\boldsymbol y|\boldsymbol X)} 
 \]
 
-We need to find the $\hat{f}$ that maximises $p(f|X,y)$. Also, $p(y|X)$ is independent of $f$, only the numerator need to be considered. Take the logrithm of $p(f|X,y)$ we get
+We need to find the $\hat{f}$ that maximises $p(f|X,y)$. Also, $p(y|X)$ is independent of $f$, only the numerator need to be considered. Take the logarithm of $p(f|X,y)$ we get
 
 \begin{equation}
 \begin{split}
@@ -405,14 +459,14 @@ This is a non-linear function therefore can be solved by Newton's method. Common
 \begin{figure}
 \centering
 \includegraphics[scale=0.55]{classification_latent_f.eps}
-\caption{Example plot of latent variable. Blue crosses are training points and red region is its variance. The variance now is never going to be zero because the latent function value is not told directly. While in noise free regression, the exact value of output at training points is told.}
+\caption{Example plot of latent variable. Blue crosses are training points and red region is its variance. The variance now is never going to be zero because the latent function value is not observed directly. While in noise free regression, the exact value of output at training points is told.}
 \end{figure}
 
 \subsection{Maximising the Objective Function}
 The objective function here is the log posterior $p(y|X,\theta) = \int p(y|f)p(f|X) df = \int \operatorname{exp}(\Psi(f)) df$ which can be obtained by using Laplace's approximation of $p(f|X,y)$ (Taylor expansion around $\hat{f}$)
 
 \begin{equation}
-p(y|X,\theta) \simeq q(y|X,\theta) = exp(\Psi(\hat{f})) \int \operatorname{exp}(-\frac{1}{2}(f - \hat{f})A(f-f\hat{f})) df
+p(y|X,\theta) \simeq q(y|X,\theta) = \exp(\Psi(\hat{f})) \int \operatorname{exp}(-\frac{1}{2}(f - \hat{f})A(f-f\hat{f})) df
 \end{equation}
 thus
 \begin{equation}
@@ -423,10 +477,10 @@ thus
 where $|B| = |I_n + W^{\frac{1}{2}} K W^{\frac{1}{2}}|$ and $K$ is covariance defined by $\theta$. This is the final function we need to run optimisation on. 
 
 \subsubsection{Sampling Methods for Hyperparameters}
-In most of the cases, the objective function is non-linear, which means that more than one set of initial hyperparameters has to be assigned as the starting points for optimisation. Following are two methods used for low number of hyperparameters (usually 1 or 2) and higher number of hyperparameters.
+In most of the cases, the objective functions are non-convex, which means that more than one set of initial hyperparameters has to be assigned as the starting points for optimisation. By running the optimisation algorithm starting from each set of them, the one gives the best result is chosen to be used for calculating the exact value of optimised hyperparameters. Following are two methods used for low number of hyperparameters (usually 1 or 2) and higher number of hyperparameters.
 
 
-Uniform sampling is one of the most common and easily obtainable sampling method. Samples are simply drawn from sample space by dividing the sample space with the number of required samples and taking one in each subspaces (or more strictly, with equal distance between samples). This is usually an idea sampling method for low dimensional problems where the number of dimensions will not largely increase the number of samples if we want to achieve the same number of sampling intervals in each dimension. 
+Uniform sampling is one of the most common and easily obtainable sampling method. Samples are simply drawn from sample space by dividing the sample space with the number of required samples and taking one in each subspaces (or more strictly, with equal distance between samples). This is usually an ideal sampling method for low dimensional problems where the number of dimensions will not largely increase the number of samples if we want to achieve the same number of sampling intervals in each dimension. 
 
 \begin{figure}
 \centering
@@ -437,7 +491,7 @@ Uniform sampling is one of the most common and easily obtainable sampling method
 
 Latin Hypercube Sampling (LHS)\cite{mckay2000comparison} is commonly used for higher dimensional problems. If we want N samples from a one-dimensional variable, we can either uniformly take N points with equal distant from one another, or we can divide the sampling space into N equal intervals and take one sample from each interval. LHS is a simple extension from uniform sampling. When taking N samples from a M-dimensional variable, the sampling space of each dimension is divided into N equal intervals. Each interval is sampled once with the order of sampling being random. Then all the samples from M dimensions are combined to give N samples each has M dimensions. Each of the possible combinations of intervals forms a multi-dimensional region that sample could draw from, called a Latin square for two-dimensional sampling space and a Latin hypercube for higher dimensions. 
 
-One advantage of LHS over random sampling is its uniformity. It ensures that samples are well-distributed in each dimension independently. While in random sampling, samples are generated without taking into account the previous samples, they results may be squeezed together, resulting in repeated optimisation results while leaving the other area blank. Non-linear function optimisation means that samples has to be well distributed. The more uniform the samples are, the more likely the global maximum could be found. Another important feature is that LHS does not require more samples for larger dimensions. In uniform sampling, a M-dimensional variable with N samples for each dimension means that N$\times$M samples will be drawn in order to cover the whole sampling space. Obviously for higher dimensional problems this is too time-consuming. For Gaussian process, the hyperparameters involved in optimisation include those used to define mean and covariance functions. When each weighting computing the distance between inputs are treated as hyperparameters, much higher dimensional samples needs to be drawn, leading to a strong preference in Latin Hypercube Sampling.  
+One advantage of LHS over random sampling is its uniformity. It ensures that samples are well-distributed in each dimension independently. While in random sampling, samples are generated without taking into account the previous samples, they results may be squeezed together, resulting in repeated optimisation results while leaving the other area blank. Non-linear function optimisation means that samples have to be well distributed. The more uniform the samples are, the more likely the global maximum could be found. Another important feature is that LHS does not require more samples for larger dimensions. In uniform sampling, a M-dimensional variable with N samples for each dimension means that N$\times$M samples will be drawn in order to cover the whole sampling space. Obviously for higher dimensional problems this is too time-consuming. For Gaussian process, the hyperparameters involved in optimisation include those used to define mean and covariance functions. The weightings of covariance function, each associated with a different input variable, are also treated as hyperparameters, high dimensional samples needs to be drawn, leading to a strong preference in Latin Hypercube Sampling.  
 
 \begin{figure}
 \begin{subfigure}{0.5\textwidth}
@@ -451,7 +505,7 @@ One advantage of LHS over random sampling is its uniformity. It ensures that sam
 \includegraphics[scale = 0.3]{RS.pdf}
 \caption{Random Sampling}
 \end{subfigure}
-\caption{Comparison between Latin Hypercube sapling and random sampling. Although Latin hypercube sampling may not represent the most variable overall (which can be improved by Orthogonal sampling), it gives a pretty good variability in each dimension. Random sampling does not secure any variability. }
+\caption{Comparison between Latin Hypercube sampling and random sampling. Although Latin hypercube sampling may not represent the most variation overall ( can be improved by Orthogonal sampling), it gives a pretty good variability in each dimension. Random sampling does not secure any variability. }
 \end{figure}
 
 
@@ -530,25 +584,24 @@ One may argue that expectation of the prediction could be simply equal to the si
 \section{Data Preprocessing}
 \rhead{Data Preprocessing}
 \label{sec:preprocessing}
-Sometimes only the useful information is wanted when data is noisy or redundant. This can be achieved by data preprocessing. It has a few advantages. First, for high dimensional data, computation time is essential. Reducing the redandunt information can largely save computation time. Second, less redundant information means it is easier for your algorithm to find the true pattern behind data. 
+Sometimes only the useful information is wanted when data is noisy or redundant. This can be achieved by data preprocessing. It has a few advantages. First, for high dimensional data, computation time is essential. Reducing the redundant information can largely save computation time. Second, less redundant information means it is easier for your algorithm to find the true pattern behind data. 
 
 \subsection{Principal Component Analysis}
-Principal Component Analysis (PCA) is a statistical tool for dimensionality reduction. It tries to identify the subspace in which the data approximately lies\cite{PCA_AN}. It transforms the original data into orthogonal components in descending order of their corresponding variances\cite{jolliffe2002principal} by eigenvalue decomposition or singular value decomposition\cite{golub1965calculating}. The resulting number of principal components is always equal or less than the original number of dimensions. This can be intuitively explained by the orthogonality of the principal components. Orthogonality means that components are uncorrelated and there are no redundant information between them. Therefore less number of components are needed to represent the data. 
+Principal Component Analysis (PCA) is a statistical tool for dimensionality reduction. It tries to identify the subspace in which the data approximately lies. It transforms the original data into orthogonal components in descending order of their corresponding variances\cite{jolliffe2002principal} by eigenvalue decomposition or singular value decomposition\cite{golub1965calculating}. The resulting number of principal components is always equal or less than the original number of dimensions. This can be intuitively explained by the orthogonality of the principal components. Orthogonality means that components are uncorrelated and there are no redundant information between them. Therefore less number of components are needed to represent the data. 
 
-The steps for using PCA is very simple: First, normalise the data in each dimension. Next, put it through singular value decomposition. Lastly, cut off all the components with variances less than a threshold. Theshold value depends on how much variances user wants  to retained. PCA is widely used in supervised machine learning for faster computation and better knowledge discovery. When dropping the components with less variances, it is equivalently to give up those unimportant features that may had affected the resulting model.  
+The steps for using PCA is very simple: First, normalise the data in each dimension. Next, put it through singular value decomposition. Lastly, cut off all the components with variances less than a threshold. Threshold value depends on how much variances user wants  to retained. PCA is widely used in supervised machine learning for faster computation and better knowledge discovery. When dropping the components with less variances, it is equivalently to give up those unimportant features that may had affected the resulting model.  
 
  
 \subsection{Normalisation}
-Since PCA is sensitive to the relative scaling of the original variables, normalisation\cite{kotsiantis2006data} is needed before applying PCA\cite{PCA_AN}. There are three common methods for normalisation: simple rescaling, per-example mean substraction, and feature standardization. Simple rescaling are usually used in image processing when pixel value is rescaled from [0 255] to [0 1] by dividing 255 on each element. per-example mean substraction is suitable for stationary data that the statistics for each feature dimension is the same. Simply substracting the mean value of each instance will normalise the data. The third one, feature standardization, is the most common method for normalisation. It is achieved by first substract the mean of each dimension from that dimension. Then, each feature dimension is divided by the standard deviation of that dimension. The process makes each dimension to have zero mean and unit variance. With all dimensions having the same scale, PCA can then be applied.
+Since PCA is sensitive to the relative scaling of the original variables, normalisation\cite{kotsiantis2006data} is needed before applying PCA\cite{PCA_AN}. There are three common methods for normalisation: simple rescaling, per-example mean subtraction, and feature standardization. Simple rescaling are usually used in image processing when pixel value is rescaled from [0,255] to [0,1] by dividing 255 on each element. Per-example mean subtraction is suitable for stationary data that the statistics for each feature dimension is the same. Simply subtracting the mean value of each instance would be enough. The third one, feature standardization, is the most common method for normalisation. It is achieved by first subtract the mean of each dimension from that dimension. Then, each feature dimension is divided by the standard deviation of that dimension. The process makes each dimension to have zero mean and unit variance. With all dimensions having the same scale, PCA can then be applied.
 
 
 
 \chapter{GP Classification for Employment Prediction}
 \rhead{GP for Employment}
 \label{GP_for_employment}
-To integrate Gaussian process classification into the prediction of occupational automatability, we first define the occupational features as the input and the probability of computerisation as the output. The basic idea is first to train a classifier based on labeled occupational features. Then the classifier is used to make prediction on occupations with unknown labels, or in other words, to determine the probability of any unknow occupation belonging to class '1'. Here class '1' means the occupation is automatable, and class '0' means it is not automatable. The same class notation will be used through the project.  
-
-The optimisation library used   
+To integrate Gaussian process classification into the prediction of occupational automatability, we first define the occupational features as the input and the probability of computerisation as the output. The basic idea is first to train a classifier based on labeled occupational features. Then the classifier is used to make prediction on occupations with unknown labels, or in other words, to determine the probability of any unknown occupation belonging to class '1'. Here class '1' means the occupation is automatable, and class '0' means it is not automatable. The same class notation will be used through the project.  
+  
 
 \begin{figure}[htb]
 \centering
@@ -559,9 +612,9 @@ The optimisation library used
  
 
 \section{Performance Measurement} 
-There are two possible measurements for predictive accuracy. One is marginal likelihood calculated in equation \ref{eq:marg_likelihood_classification}. It is also a measure for choosing hyperparameters. The higher (less negative) its value is, the better the performance. 
+There are two possible measurements for predictive accuracy: marginal likelihood and Receiver Operating Characteristic (ROC) curve. One is marginal likelihood calculated in equation \ref{eq:marg_likelihood_classification}. It is also a measure for choosing hyperparameters. The higher (less negative) its value is, the better the performance. Both likelihood and ROC are computed on verification set rather than training set. How these two sets are formed will be discussed later. 
 
-Another important measure commonly used in binary classifier is the Receiver Operating Characteristic (ROC) curve \cite{hanley1982meaning}\cite{bradley1997use}. The curve plots the true positive rate against the false positive rate.The area under the ROC curve (AUC) gives the probability that the classifier gives the right answer for positive classes. A random classifier would score an AUC of 0.5 while a perfect classifier would give the AUC of 1. 
+The other important measure commonly used in binary classifier, ROC \cite{hanley1982meaning}\cite{bradley1997use}, plots the true positive rate against the false positive rate.The area under the ROC curve (AUC) gives the probability that the classifier gives the right answer for positive classes. A random classifier would score an AUC of 0.5 while a perfect classifier would give the AUC of 1. 
 
 There are possibilities of model over-fitting or under-fitting. Whether they would occur depends on the value of hyperparameters. A simple illustration of over-fitting and under-fitting in 1D Gaussian process is shown in Figure \ref{fig:overfitting}. In the upper left graph, when length scale is small, the model function tries to fit too much details including the unwanted noise. While in the upper right graph, when length scale is too large, the model would only describe a general trend which is not very useful if more information is wanted. The best model is the intermediate state where only the appropriate curvatures are preserved. 
 
@@ -588,12 +641,12 @@ There are possibilities of model over-fitting or under-fitting. Whether they wou
 
 
 
-\caption{(a) When lengthscale get small, it tries to fit the noise-corrupted details (b) If length-scale is contrained to be large, it concenrates on large scale smoothness (c) An appropriate model in this case should pay attention to detail but not forgetting the overall smoothness. Green curve is the original function from which noisy samples (blue corsses) are generated. Black curve is the resulting GP model.}
+\caption{(a) When lengthscale get small, it tries to fit the noise-corrupted details (b) If length-scale is constrained to be large, it concentrates on large scale smoothness (c) An appropriate model in this case should pay attention to detail but not forgetting the overall smoothness. Green curve is the original function from which noisy samples (blue crosses) are generated. Black curve is the resulting GP model.}
 
 \label{fig:overfitting}
 \end{figure}
 
-In order to verify that the classifier is working correctly -- no over-fitting or under-fitting is happening, AUC is computed by dividing the training data into a testing group and a training group with equal number of members each. The model hyperparameters trained from the training group are used for predicting the testing group labels. Then the result of testing group is compared with its true class labels to generate the ROC curve. A typical ROC curve in this problem would look like figure \ref{fig:ROC}. The final model for predicting all occupations are trained on the whole training set which includes the training group and testing group. One thing to notice is that a good algorithm learns the trend from training data while not fitting the noise. Noise can be introduced when the feature variables are noisy or the labels are not 100\% correct. An ideal model should be able to identify and correct the mistaken labels therefore would nont neccessary give the lowest training error or the best AUC.
+In order to verify that the classifier is working correctly, i.e. no over-fitting or under-fitting is happening, AUC is computed by dividing the training data into a testing group and a training group with equal number of members each. The model hyperparameters trained from the training group are used for predicting the testing group labels. Then the result of testing group is compared with its true class labels to generate the ROC curve. A typical ROC curve in this problem would look like figure \ref{fig:ROC}. The final model for predicting all occupations are trained on the whole training set which includes the training group and testing group. One thing to notice is that a good algorithm learns the trend from training data while not fitting the noise. Noise can be introduced when the feature variables are noisy or the labels are not 100\% correct. An ideal model should be able to identify and correct the mistaken labels therefore would not necessary give the lowest training error or the best AUC.
 
 
 \begin{figure}[!htb]
@@ -609,16 +662,29 @@ In order to verify that the classifier is working correctly -- no over-fitting o
 \section{The 2010 data}%% story telling mode!!!! 
 The occupational task descriptions are obtained from the 2010 version of O*NET -- an online platform providing detailed descriptions for jobs. Hand-labelled training data with 33 occupations labelled '0'(not automatable) and 37 labelled '1'(fully automatable) are prepared. A job is defined as automatable if all tasks involved in that job can be performed by computer-controlled equipment. More details about how the training data is determined can be found in the work of Frey \& Osborne\cite{frey2013future}.  
 
-Nine features, falling into three categories -- social intelligence, creative intelligence, and perception and manipulation, are believed to be bottlenecks of computerisation. They  are important factors that affect automatability in terms of the intelligence required to perform a job. Hence concatenating these nine features of each occupation into a feature vector would give us the input of the classification algorithm. Using the feature vector and class label for each occupation in the training set, the probability of any other occupation with unseen feature vector can be computed by estimating a latent function and then mapped into a probability value between 0 and 1. Note the probability computed is only suitable for the near future since the labels are based on current techninology capability.
+Nine features, falling into three categories -- social intelligence, creative intelligence, and perception and manipulation, are believed to be bottlenecks of computerisation. They  are important factors that affect automatability in terms of the intelligence required to perform a job. Hence concatenating these nine features of each occupation into a feature vector would give us the input of the classification algorithm. Using the feature vector and class label for each occupation in the training set, the probability of any other occupation with unseen feature vector can be computed by estimating a latent function and then mapped into a probability value between 0 and 1. Note the probability computed is only suitable for the near future since the labels are based on current technology capability.
 
-As stated in section \ref{sigmoid function}, any type of sigmoid function could be used in this mapping. Here cumulative Gaussian function\footnotemark is chosen for its better performance in this particular problem. Squared exponential is chosen as the covariance function as the output is not expected to have any periodicity but a general smoothness would be helpful (occupations with similar feature variables should have a similar probability of being automated). MinConf\cite{minConf} is used for fast optimisation on multivariate objective function subject to simple constraints on the parameters. The hyperparameters are constrained within a certain range for numerical stability. 
+As stated in section \ref{sigmoid function}, any type of sigmoid function could be used in this mapping. Two most common types of sigmoid funcion is discussed here: probit\footnote{Also know as cumulative Gaussian function} and logistic function. If using each of them for training and prediction, we could get two sets of performance measurements. Marginal likelihood and AUC are computed on validation set for each sigmoid function. In Table \ref{tab:sigmoid} we could see that probit function outperforms logistic function in both likelihood and AUC. Hence probit function is chosen as the better sigmoid function for this particular problem. 
+
+Squared exponential is used as the covariance function since the output is not expected to have any periodicity but a general smoothness would be helpful (occupations with similar feature variables should have a similar probability of being automated). MinConf\cite{minConf} is used for fast optimisation on multivariate objective function subject to simple constraints on the parameters. The hyperparameters are constrained within certain ranges for numerical stability. 
+
+\renewcommand{\arraystretch}{2}  %table line width
+\begin{table}[!htb]
+\centering
+\begin{tabular}{?c|c|l?}
+\thickhline
+Performance & Probit & Logistic \\ \hline
+Likelihood  & -30.86 & -31.80   \\
+AUC         & 0.92   & 0.85     \\ \thickhline
+\end{tabular}
+\caption{Performance comparison between probit function and logistic function}
+\label{tab:sigmoid}
+\end{table}
 
 
-\footnotetext{Also know as probit function}
 
-The results are shown in Figure \ref{fig:category2010}. In stead of plotting original variables against the probability of computerisation, the graphs are generated by plotting the categorical score against probability. The value for each category is calculated by adding up all variables in that category. The categorical plotes shows a clear trend in automatability. 
+The results are shown in Figure \ref{fig:category2010}. In stead of plotting original variables against the probability of computerisation, the graphs are generated by plotting the categorical score against probability. The value for each category is calculated by adding up all variables in that category. The categorical plots show a clear trend in automatability. 
 
-Both creative intellience and social intelligence have a negative effect on probability of computerisation. High values in these variables indicate a lower risk of being automated. On the other hand, occupations with high value in variables of perception and manipulation tend to have a higher risk. For example, 'Mental Health Counselors' needs a high level of social perspectives such as persuation, have a probability as low as 0.048. However, machine operators such as 'Shoe Machine Operators and Tenders' require a relatively higher level of manual dexterity, has a high probability of 0.95. Probability of other occupations can be checked in Appendix \ref{App:results_all}.
 
 \begin{figure}[!htb]
 \centering
@@ -637,13 +703,15 @@ Both creative intellience and social intelligence have a negative effect on prob
 \end{subfigure}
 
 
-\caption{The occupational category as a function of probability of computerisation. Each point represents an occupation. The value for each category is compued by adding up all variables within that category but the input for the algorithm is still nine variables.}
+\caption{The occupational category as a function of probability of computerisation. Each point represents an occupation. The value for each category is computed by adding up all variables within that category but the input for the algorithm is still nine variables.}
 \label{fig:category2010}
 \end{figure}
 
+Both creative intelligence and social intelligence have a negative effect on probability of computerisation. High values in these variables indicate a lower risk of being automated. On the other hand, occupations with high value in variables of perception and manipulation tend to have a higher risk. For example, 'Mental Health Counselors' needs a high level of social perspectives such as persuasion, have a probability as low as 0.048. However, machine operators such as 'Shoe Machine Operators and Tenders' require a relatively higher level of manual dexterity, has a high probability of 0.95. Probability of other occupations can be checked in Appendix \ref{App:results_all}.
+
 It is not hard to tell that occupations involving abstract and creative tasks are not likely to be substituted by machines, at least not now, not on a large scale. Although, it does not mean that jobs requiring high creative intelligence and social intelligence will never be automated, it does indicates that these substitution is not happening in the near future given current technology. 
 
-However, we should always be aware that these automations could happen when their engineering bottlenecks are broken. At that time, there is no reason for automation not to happen when machines can just perform these tasks as well as human and even at a lower cost. This is exactly what happened after the Great Recession -- companies preferred to buy more equipments than hire more employees. It was believed to be the foundamental cause of the slow recovery of labor force market after the recession\cite{brynjolfsson2012race} and it could also be the cause of the next job loss.
+However, we should always be aware that automation in these areas could happen when their engineering bottlenecks are broken. At that time, there is no reason for automation not to happen when machines can just perform these tasks as well as human and even at a lower cost. This is exactly what happened after the Great Recession -- companies preferred to buy more equipments than hire more employees. It was believed to be the fundamental cause of the slow recovery of labor force market after the recession\cite{brynjolfsson2012race} and it could also be the cause of the next job loss.
 
 
 
@@ -652,15 +720,18 @@ However, we should always be aware that these automations could happen when thei
 
 
 
+\newpage
 \section{The 1980 data}
-Occupational data from David Autor et al.\cite{david2001skill} includes skills required in each occupation in 1980. In total, there are 26 input variables for each occupation, including different characteristics of the workers such as spatial aptitude, clerical perception, and finger dexterity etc. The variables are chosen from \textit{Handbook for Analyzing Jobs}\footnotemark. 
+Occupational data from previous work\cite{david2001skill}, including skills required in each occupation in 1980, is used to compute the automatability in 1980. In total, there are 26 input variables for each occupation such as spatial aptitude, clerical perception, and finger dexterity etc. All of these variables are chosen from \textit{Handbook for Analyzing Jobs}\footnotemark. 
 
 \footnotetext{U. S. Department of Labor, Manpower Administration, Handbook for Analyzing Jobs (Washington, DC, 1972)}
 
-First, training labels from the 2010 experiment are transferred to 1980 occupations via crosswalk files\cite{SOC2010_2000},\cite{SOC2000_OCC}, and\cite{OCC2000_1990}, giving 58 labels on the new data. Then the same process as before is applied. In order to get better results on classification and saving computation time, principal component analysis (PCA) is used to reduce the dimensionality of feature vector. 19 components are remained when 98\% of variances are preserved. The improvement on performance by using PCA is shown in Table \ref{tab:PCA}. Note that data is first normalised before sending into PCA (Section \ref{sec:preprocessing}). This is usually considered as a necessary step for PCA to give a good result\cite{PCA_AN}.  \\
+Before experiment starts, training labels from the 2010 experiment are transferred to 1980 occupations via crosswalk files\cite{SOC2010_2000},\cite{SOC2000_OCC}, and\cite{OCC2000_1990}, giving 58 labels on the new data. Here it is assumed that the task breakdown of jobs has not changed too much from 1980 to 2010. Directly transferring the labels to the 1980 data also means that the impact of 2013 technology is introduced in the 1980 result. Therefore it is reasonable to expect that the 2013 technology would be able to automate more simpler jobs no longer exist today but available in 1980. 
 
-\renewcommand{\arraystretch}{2}
-\begin{table}[htb]
+In order to get better results on classification and saving computation time, principal component analysis (PCA) is used to reduce the dimensionality of feature vector. First the data is normalised by setting each dimension to zero mean and unit variance (Section \ref{sec:preprocessing}). Then applying PCA on the 26 dimensional input. 19 components are remained when 98\% of variances are preserved. The reduced feature vectors are then used as the input variables for computerisation prediction. Again, marginal likelihood and the AUC of validation set when using and not using PCA in the preprocessing step are compared to show whether PCA has improved the performance (Table \ref{tab:PCA}). The result shows that PCA does improve both likelihood and AUC. This is not a surprise since 26 variables are very likely to introduce some degree of noise and PCA can help removing the noise. \\
+
+
+\begin{table}[]
 \centering
 \begin{tabular}{?c|c|l?}
 \thickhline
@@ -675,7 +746,7 @@ AUC         & 0.75   & 0.87     \\ \thickhline
 
 Only five measurements are analysed as representatives for five types of task\cite{david2001skill}. They are routine cognitive, routine manual, non-routine analytical, non-routine interactive, and non-routine manual tasks. A task is defined as 'routine' if it can be accomplished by machine following explicit rules that can be programmed. Many rule-based tasks, such as monitoring the amount of sulphur dioxide in gas emitted by thermal power station, belong to this category. Non-routine tasks are those that can not be programmed in code line by line and therefore are well understood by computers. Another categorization is manual or cognitive. Manual tasks involves physical activities while cognitive tasks involves knowledge works. Cognitive tasks can further be categorised into analytical or interactive, depending on whether it needs mathematical skills or not. 
 
-Although the input variables for 2010 and 1980 are both about the level of intelligence required to perform a job, their analysis focus on different perspectives. Previously, the study focused on the relation between score of intelligence and probability. This time, the score of intelligence is used as representatives for different tasks. Certainly there is a  correspondence between these two representation. Social intelligence are often required in non-routine interactive tasks while perception and manipulation are mostly performed in either routine or non-routine manual tasks. Similar trends would be expected for corresponding categories. Figure \ref{fig:1980} are the probability plot for all five tasks. The score of each task is calculated as the percentage of the sum of all five task scores. As expected, high level of non-routine interactive tasks means lower probability of computerisation. High level of routine and non-routine manual tasks gives higher risk for computerisation.
+Although the input variables for 2010 and 1980 are both about the level of intelligence required to perform a job, their analysis focus on different perspectives. Previously, the study focused on the relation between score of intelligence and probability. This time, the score of intelligence is used as representatives for different tasks. Certainly there is a  correspondence between these two representations. Social intelligence is often required in non-routine interactive tasks while perception and manipulation are mostly performed in either routine or non-routine manual tasks. Similar trends would be expected for corresponding categories. Figure \ref{fig:1980} are the probability plot for all five tasks. The score of each task is calculated as the percentage of the sum of all five task scores. As expected, high level of non-routine interactive tasks means lower probability of computerisation. High level of routine and non-routine manual tasks gives higher risk for computerisation.
 
 \begin{figure}[!htb]
 
@@ -707,8 +778,7 @@ Although the input variables for 2010 and 1980 are both about the level of intel
 \end{figure}
 
 
-
-An interesting thing to notice is that the trend for non-routine manual task is more similar to those of routine tasks. In the 20th century, computerisation is limited within routine tasks that can be performed by following explicit rules. Recent developments in artificial intelligence makes non-routine tasks involving non-rule-based activities such as pattern recognition also become computerisable. This is why non-routine manual task behaves like routine tasks. An example occupation rich in non-routine manual tasks would be drivers. Traditionally, driving a car is treated as a fairly difficult task for machine to complete. Now self-driving car is believed to be undoubtly the next revolution in car industry. Similar things are happening in other areas. All of them contribute to the change of computerisation and as a result shift in job market.
+One interesting thing to notice is that the trend for non-routine manual task is more similar to those of routine tasks. In the 20th century, computerisation is limited within routine tasks that can be performed by following explicit rules. Recent developments in artificial intelligence makes non-routine tasks involving non-rule-based activities such as pattern recognition also become computerisable. This is why non-routine manual task behaves like routine tasks. An example occupation rich in non-routine manual tasks would be drivers. Traditionally, driving a car is treated as a fairly difficult task for machine to complete. Now self-driving car is believed to be undoubtedly the next revolution in car industry. Similar things are happening in other areas. All of them contribute to the change of computerisation and as a result shift in job market.
 
 
 
@@ -724,16 +794,17 @@ An interesting thing to notice is that the trend for non-routine manual task is 
 	\includegraphics[scale = 0.5]{non-routine.eps}
 \end{subfigure}
 
-\caption{Averaged probability of computerisation vs. \\categorial task measurements in 1980.}
+\caption{Averaged probability of computerisation vs. \\categorical task measurements in 1980.}
 \label{fig:1980cat}
 \end{figure}
 
-Figure \ref{fig:1980cat} are the probability for routine tasks and non-routine tasks in general. Again, the categorical task scores are the sum of all variables in each category. The plot is generated by applying a moving average filter over all occuations. There is a steady increase in probability with higher routine tasks and reverse trend in non-routine tasks. The plots matches the conclusion of David Autor et al.\cite{david2001skill} that the use of computers is substitutive to routine jobs while complementary to non-routine jobs in general. 
-
-To further prove that the result is correct, the employment data from IPUMS\cite{IPUMS1990} is compared with the probability of computerisation in 1980. If the predictions are  correct, occupations with high probability of computersation should have decreased in employment rate\footnotemark . If we exclude the extreme values ( with more than 0.25 percent change in employment rate) and fit it with a least squre line, we could see a clear trend giving negative relationship between probability and employment change in Figure\ref{fig:labor_change}. 
+Figure \ref{fig:1980cat} are the probability for routine tasks and non-routine tasks in general. Again, the categorical task scores are the sum of all variables in each category. The plot is generated by applying a moving average filter over all occupations. There is a steady increase in probability with higher routine tasks and reverse trend in non-routine tasks. The plots matches the conclusion of David Autor et al.\cite{david2001skill} that computers substitutes workers in routine jobs while complements those in non-routine jobs. 
 
 
-\footnotetext{Employment rate here refers to the percentage of population that is working in certain job.}
+To further prove that the result is correct, the employment data from IPUMS\cite{IPUMS1990} is compared with the probability of computerisation in 1980. If the predictions are  correct, occupations with high probability of computerisation should have decreased in employment rate\footnotemark. If we exclude the extreme values ( with more than 0.25 percent change in employment rate) and fit it with a least square line, we could see a clear trend giving negative relationship between probability and employment change in Figure\ref{fig:labor_change}.
+
+
+\footnotetext{Employment rate here refers to the percentage of population that is working in a job.}
 
  
 \begin{figure}[htb]
@@ -759,7 +830,7 @@ high                       & $-0.011\pm 0.006$                      \\ \thickhli
 \label{tab:labor_change}
 \end{table} 
 
-On the other hand, the fact that the employment rate of low automatability jobs are more likely to have increased fits well to the opinion of Brynjolfsson and McAfee\cite{brynjolfsson2012race}. They argued that computerisation will not make people useless. Instead, it will shift the labor market so that more people are working on those tasks that computers are not good at. As long as human learns to use computers to help them with other non-computerisable tasks, that is to say, to keep computers being complementary instead of substitutive, computers will not be a threat to human jobs. This means two things. First, as computers become cheaper and smarter, more people will use computers as their complementary tool for their jobs today. Second, new jobs will be created by using more powerful computers as infrastructure. The only case we need to worry is when the rate of computer development become faster than the rate at which human creating and adapting to new jobs. If that happens, the employment rate of human race would be expected to decrease.
+On the other hand, the fact that the employment rate of low automatability jobs are more likely to have increased fits well to the opinion of Brynjolfsson and McAfee\cite{brynjolfsson2012race}. They argued that computerisation will not make people useless. Instead, it will shift the labor market so that more people are working on those tasks that computers are not good at. As long as human learns to use computers to help them with other non-computerisable tasks, that is to keep computers being complementary instead of being a substitute, they will not be a threat to human jobs. This means two things. First, as computers become cheaper and smarter, more people will use computers as their complementary tool for their jobs today. Second, new jobs will be created by using more powerful computers as infrastructure. The only case we need to worry is when the rate of computer development become faster than the rate at which human creating and adapting to new jobs. If that happens, the employment rate of human race would be expected to decrease.
 
 
 \section{Changes in probability from 1980 to 2010}
@@ -767,7 +838,7 @@ To study how probability of computerisation has changed from 1980 to 2010, the c
 
 \begin{figure}[!htb]
 \centering
-\includegraphics[scale=0.6]{hist.eps}
+\includegraphics[scale=0.75]{hist.eps}
 \caption{Change in probability from 1980 to 2010 histogram. }
 \label{fig:hist}
 \end{figure}
@@ -776,17 +847,17 @@ There are more occupations with increased probability than with decreased probab
 
 
 \chapter{Conclusion}
-
+\rhead{}
 In this project, the probabilities of future computerisation for occupations in 2010 and 1980 are computed using Gaussian process classification. The result is analysed in two major steps. First, the results are used to find the relation between automatability and the tasks required for each occupation. Second, the results of 1980 occupations are used to predict the employment change which is then examined on the actual history data. In conclusion, jobs with relatively high score in routine tasks, compared to score of non-routine tasks, are more susceptible to computerisation. In contrast, jobs with relatively high demand in non-routine tasks are less likely to be automated. 
 
-However, this is just a short term prediction based on current technology. Resistance in automation for non-routine tasks will no longer exits when its related technical bottlenecks are broken.  This has already happened in some non-routine tasks. Self-driving cars are emerging these days with the development of artificial intelligence. Robots are learning to write novels. Being affected by these new technologies, the negative relation between non-routine tasks and automatability is no longer hold for non-routine manual tasks. There is no reason for us to not believe that similar things would happen in other areas. 
+However, this is just a short term prediction based on current technology. Resistance in automation for non-routine tasks will no longer exist when its related technical bottlenecks are broken.  This has already happened in some non-routine tasks. Self-driving cars are emerging these days with the development of artificial intelligence. Robots are learning to write novels. Being affected by these new technologies, the negative relation between non-routine tasks and automatability is no longer hold for non-routine manual tasks. There is no reason for us to not believe that similar things would happen in other areas. 
 
-Although the development of technology will make machine more capable of human works, it does not need to become a disaster. The book \textit{The new division of labor: How computers are creating the next job market}\cite{levy2012new} believes that what technology do is to shift the the tasks that human workers perform. The investment in computers resulted in striking decrease in routine task frequency while complex communications and expert thinking frequencies increased more than expected. The development of technology is not a threaten to human workers as a whole. Although it does decline the labor force of occupations that involves routine tasks that computers can perform, at the same time, it pushed more people to take more complex tasks that computers cannot do. 
+Although the development of technology will make machine more capable of human works, it does not need to become a disaster. The book \textit{The new division of labor: How computers are creating the next job market}\cite{levy2012new} believes that what technology do is to shift the the tasks that human workers perform. The investment in computers resulted in striking decrease in routine task frequency while complex communications and expert thinking frequencies increased more than expected. The development of technology is not a threat to human workers as a whole. Although it does decline the labor force of occupations that involves routine tasks that computers can perform, at the same time, it pushed more people to take more complex tasks that computers cannot do. 
 
 
 
 \section{Limitations}
-There are potential errors in the employment prediction. First, the crosswalk files did not make perfect matches for occupation from 1980 and 2010 because of change of occupational structures. Some 2010 occupations can not find correspondencies in 1980 simply because they did not exist at that time. Some may find multiple correspondences because jobs branch and merge over time. Therefore it may be better if more precise labels could be determined individually other than relying on crosswalks to tranfer from the 2010 labels. In addition, the mismatch of occupations causes a small amount of data loss when comparing probabilities, which may or may not have affected the final results.  
+There are potential errors in the employment prediction. First, the crosswalk files did not make perfect matches for occupation from 1980 and 2010 because of change of occupational structures. Some 2010 occupations can not find correspondences in 1980 simply because they did not exist at that time. Some may find multiple correspondences because jobs branch and merge over time. Therefore it may be better if more precise labels could be determined individually other than relying on crosswalks to transfer from the 2010 labels. In addition, the mismatch of occupations causes a small amount of data loss when comparing probabilities, which may or may not have affected the final results.  
 
 Other factors such as politics may also affect the actual automatability. This project only discusses the computerisation from a technical point of view -- which occupations are at a risk to be automated given current technology. Also, it is not taking into account the possible future developments in new technology. The breaking of engineering bottlenecks in the future, obviously, will again change the image of computerisation probability. 
 
@@ -799,7 +870,7 @@ Other factors such as politics may also affect the actual automatability. This p
 
 
 \begin{flushleft}
-\bibliographystyle{unsrt}
+\bibliographystyle{apalike}
 \bibliography{4YP}
 \end{flushleft}
 
@@ -1030,7 +1101,7 @@ Tax Preparers	&		&	&	0.962	&	0.295	&	0.18900	\\
 Telemarketers	&		&	&	0.962	&	0.663	&	-1.65100	\\
 \hline 
 
-\caption{Probability of computerisation in 1980 and 2010 (some 1980 reaults are missing because they can not find correspondences using crosswalk files).} 
+\caption{Probability of computerisation in 1980 and 2010 \\(some 1980 reaults are missing for being not able to find correspondences using crosswalk files).} 
 \label{tab:myfirstlongtable}
 
 
